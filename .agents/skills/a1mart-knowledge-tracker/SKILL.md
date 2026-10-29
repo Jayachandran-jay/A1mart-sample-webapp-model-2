@@ -883,6 +883,6 @@ When pair-programming or operating on this repository:
 
 - **Version 2.5.21 (October 29, 2026) — Remote Reset to Target Organization**:
   - **Remote Origin Target**:
-    - Removed secondary remote and set `origin` exclusively to `https://github.com/a1martinfotech-collab/A1martSample1.git`.
+    - Updated `origin` to `https://github.com/a1martinfotech-collab/a1mart-sample.git`.
   - **Status**:
-    - Local commits and build ready for push upon receiving access token or collaborator permission.
+    - Local commits and build verified and ready for push upon receiving access token or collaborator permission.
