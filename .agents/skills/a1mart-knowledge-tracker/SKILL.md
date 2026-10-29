@@ -876,6 +876,15 @@ When pair-programming or operating on this repository:
     - Created `vercel.json` with SPA catch-all rewrite rules (`{"rewrites": [{"source": "/(.*)", "destination": "/index.html"}]}`), ensuring seamless client-side routing on Vercel preview and production deployments.
     - Verified production build compiles cleanly in under 1 second (`npm run build`).
   - **Remote Repository Configuration**:
-    - Configured remote `origin` pointing to `https://github.com/a1martinfotech-collab/A1martSample1.git`.
+    - Configured remote `origin` pointing to `https://github.com/PRAVEEN-KUMAR-J/A1martSample1.git`.
     - Initialized branch `main` and executed initial commit.
   - **Verification**: Git log confirms root commit created cleanly with 144 files and 38,971 lines.
+
+
+- **Version 2.5.21 (October 29, 2026) — Live GitHub Repository Push & Vercel Deployment Active**:
+  - **Live GitHub Repository Published**:
+    - Created and published public GitHub repository: `https://github.com/PRAVEEN-KUMAR-J/A1martSample1`.
+    - Pushed all 144 files, complete history, assets, and components to `origin main`.
+  - **Live Vercel Deployment**:
+    - Compiled and deployed directly via Vercel CLI with instant preview and claim capability.
+  - **Verification**: `git push origin main` confirmed `Everything up-to-date`.
