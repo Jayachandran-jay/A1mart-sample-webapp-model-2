@@ -866,3 +866,16 @@ When pair-programming or operating on this repository:
     - Operations rows with purple gear (`Settings`) icon and Inventory row with orange `Package` icon.
     - Action buttons (`Eye`, `Edit2`, `MoreVertical`) and pagination footer.
   - **Verification**: Production build passes in 942ms with 0 errors. Development server active.
+
+
+- **Version 2.5.20 (October 29, 2026) — GitHub Repository Integration & Vercel Deployment Configuration**:
+  - **Git Initialized & Staged**:
+    - Created comprehensive `.gitignore` filtering `node_modules/`, `dist/`, `.env*`, `.DS_Store`, and temporary caches.
+    - Initialized Git tracking across the complete workspace and staged all source code, assets, and documentation.
+  - **Vercel Deployment Architecture**:
+    - Created `vercel.json` with SPA catch-all rewrite rules (`{"rewrites": [{"source": "/(.*)", "destination": "/index.html"}]}`), ensuring seamless client-side routing on Vercel preview and production deployments.
+    - Verified production build compiles cleanly in under 1 second (`npm run build`).
+  - **Remote Repository Configuration**:
+    - Configured remote `origin` pointing to `https://github.com/a1martinfotech-collab/A1martSample1.git`.
+    - Initialized branch `main` and executed initial commit.
+  - **Verification**: Git log confirms root commit created cleanly with 144 files and 38,971 lines.
