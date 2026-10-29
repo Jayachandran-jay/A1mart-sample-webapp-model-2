@@ -886,3 +886,16 @@ When pair-programming or operating on this repository:
     - Updated `origin` to `https://github.com/selvarajane/a1martsample.git`.
   - **Status**:
     - Local commits and build verified and ready for push upon receiving access token or collaborator permission.
+
+
+- **Version 2.5.22 (October 29, 2026) — Dual-Branch Deployment Architecture & Push to Jayachandran-jay/A1mart-sample-webapp**:
+  - **Multi-Branch Setup for Vercel Deployment**:
+    - Created and deployed two distinct, production-ready branches to `https://github.com/Jayachandran-jay/A1mart-sample-webapp.git`:
+      - **Branch 1 (`branch-1` / `v3-redesign`)**: A1-MART Final Version (Version 2.0.0, React 18, Vite 6, Lucide icons, Shoplay design system).
+      - **Branch 2 (`branch-2` / `branch2` / `erp-version`)**: A1-MART ERP Version (Version 1.0.0, React 19, Vite 8, Chart.js).
+  - **Build & Vercel Compatibility Fixes**:
+    - Converted Windows backslash path separators from the ERP archive into valid Unix directory structures (`src/pages`, `src/components`).
+    - Configured `vercel.json` SPA rewrite rules on both branches to prevent 404 errors on page refresh.
+    - Verified `npm run build` succeeds with zero errors across both branches.
+  - **Authentication & Successful Push**:
+    - Authenticated with user token and successfully pushed `branch-2`, `branch2`, `erp-version`, and `branch-1` to the remote repository.
