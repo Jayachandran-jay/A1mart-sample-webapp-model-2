@@ -1,0 +1,4069 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A1-MART — Daily Savings Daily Discount | ERP System</title>
+  <meta name="description"
+    content="A1-MART ERP Management System — Accounts, Employees, Sales, Stock, Tasks and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-toggle" id="sidebarToggle" title="Toggle Sidebar">
+      <i class="fa fa-chevron-left" id="toggleIcon"></i>
+    </div>
+
+    <div class="sidebar-logo" id="sidebarLogo">
+      <div class="logo-box">
+        <span class="logo-a1">A1</span><span class="logo-mart">MART</span>
+      </div>
+      <div class="logo-tagline">Daily Savings Daily Discount</div>
+    </div>
+
+    <nav class="sidebar-nav" id="sidebarNav">
+
+      <!-- Dashboard -->
+      <div class="nav-group">
+        <div class="nav-item has-sub active" data-section="dashboard" onclick="toggleSubmenu(this)">
+          <i class="fa fa-chart-pie nav-icon" style="color:#e07b3a"></i>
+          <span class="nav-label">Dashboard</span>
+          <i class="fa fa-chevron-down nav-arrow"></i>
+        </div>
+        <div class="nav-submenu open">
+          <div class="nav-sub-item active" onclick="navigate('accounts-dashboard')">Accounts Dashboard</div>
+          <div class="nav-sub-item" onclick="navigate('employee-dashboard')">Employee Dashboard</div>
+          <div class="nav-sub-item" onclick="navigate('payroll-dashboard')">Payroll Dashboard</div>
+          <div class="nav-sub-item" onclick="navigate('attendance-dashboard')">Attendance Dashboard</div>
+          <div class="nav-sub-item" onclick="navigate('stock-circle-dashboard')">Stock Circle Dashboard</div>
+          <div class="nav-sub-item" onclick="navigate('checklist-dashboard')">Checklist Dashboard</div>
+        </div>
+      </div>
+
+      <!-- Master Data -->
+      <div class="nav-group">
+        <div class="nav-item has-sub" data-section="master-data" onclick="toggleSubmenu(this)">
+          <i class="fa fa-users nav-icon" style="color:#7b6eef"></i>
+          <span class="nav-label">Master Data</span>
+          <i class="fa fa-chevron-down nav-arrow"></i>
+        </div>
+        <div class="nav-submenu">
+          <div class="nav-sub-item" onclick="navigate('master-employees')">Employees</div>
+          <div class="nav-sub-item" onclick="navigate('master-designations')">Designations</div>
+          <div class="nav-sub-item" onclick="navigate('master-branches')">Branches</div>
+          <div class="nav-sub-item" onclick="navigate('master-list')">Master List</div>
+          <div class="nav-sub-item" onclick="navigate('billing-counters')">Billing Counters</div>
+          <div class="nav-sub-item" onclick="navigate('master-products')">Products</div>
+          <div class="nav-sub-item" onclick="navigate('repack-items-master')">Repack Items Master</div>
+        </div>
+      </div>
+
+      <!-- Task Management -->
+      <div class="nav-group">
+        <div class="nav-item has-sub" data-section="tasks" onclick="toggleSubmenu(this)">
+          <i class="fa fa-list-check nav-icon" style="color:#e07b3a"></i>
+          <span class="nav-label">Task Management System</span>
+          <i class="fa fa-chevron-down nav-arrow"></i>
+        </div>
+        <div class="nav-submenu">
+          <div class="nav-sub-item" onclick="navigate('tasks')">View All Tasks</div>
+          <div class="nav-sub-item" onclick="navigate('my-tasks')">View My Tasks</div>
+        </div>
+      </div>
+
+      <!-- Performance Entry -->
+    <div class="nav-item has-sub" onclick="toggleSubmenu(this)">
+      <i class="fa fa-display nav-icon" style="color:#4ecdc4"></i>
+      <span class="nav-label">Performance Entry</span>
+      <i class="fa fa-chevron-down nav-arrow"></i>
+    </div>
+
+    <div class="nav-submenu">
+
+      <div class="nav-sub-item"
+          onclick="navigate('performance')">
+        Performance Entry
+      </div>
+
+      <div class="nav-sub-item"
+          onclick="navigate('add-performance-entry')">
+        Add Performance Entry
+      </div>
+
+      <div class="nav-sub-item"
+          onclick="navigate('load-performance-entry')">
+        Load Performance Entry
+      </div>
+
+    </div>
+
+      <!-- Sales Target -->
+      <div class="nav-item has-sub" onclick="toggleSubmenu(this)">
+        <i class="nav-icon fa-solid fa-money-bill-transfer"></i>
+        <span class="nav-label">Sales Target</span>
+        <i class="nav-arrow fa-solid fa-chevron-down"></i>
+      </div>
+
+      <div class="nav-submenu">
+        <div class="nav-sub-item" onclick="navigate('target-branch')">
+          Target - Branch
+        </div>
+
+        <div class="nav-sub-item" onclick="navigate('target-department')">
+          Target - Department
+        </div>
+
+        <div class="nav-sub-item" onclick="navigate('target-section')">
+          Target - Section
+        </div>
+
+        <div class="nav-sub-item" onclick="navigate('target-employee')">
+          Target - Employee
+        </div>
+
+        <div class="nav-sub-item" onclick="navigate('target-stats')">
+          Target Stats
+        </div>
+      </div>
+
+      <!-- Checklist Management System -->
+      <div class="nav-item has-sub" onclick="toggleSubmenu(this)">
+        <i class="nav-icon fa-solid fa-list-check"></i>
+        <span class="nav-label">Checklist Management System</span>
+        <i class="nav-arrow fa-solid fa-chevron-down"></i>
+      </div>
+
+      <div class="nav-submenu">
+        <div class="nav-sub-item" onclick="navigate('eb-consumption')">
+          EB Consumption
+        </div>
+
+        <div class="nav-sub-item" onclick="navigate('target-entry')">
+          Target Entry
+        </div>
+      </div>
+
+      <!-- Materials Management System -->
+      <div class="nav-item has-sub" onclick="toggleSubmenu(this)">
+        <i class="nav-icon fa-solid fa-boxes-stacked"></i>
+        <span class="nav-label">Materials Management System</span>
+        <i class="nav-arrow fa-solid fa-chevron-down"></i>
+      </div>
+
+      <div class="nav-submenu">
+        <div class="nav-sub-item" onclick="navigate('purchase-order')">
+          Purchase Order
+        </div>
+
+        <div class="nav-sub-item" onclick="navigate('purchase-entry')">
+          Purchase Entry
+        </div>
+
+        <div class="nav-sub-item" onclick="navigate('materials-request')">
+          Materials Request
+        </div>
+
+        <div class="nav-sub-item" onclick="navigate('stock-addition')">
+          Stock Addition
+        </div>
+
+        <div class="nav-sub-item" onclick="navigate('all-materials')">
+          All Materials
+        </div>
+
+        <div class="nav-sub-item" onclick="navigate('materials-category')">
+          Materials Category
+        </div>
+      </div>
+
+
+
+      <!-- Reports -->
+      <div class="nav-item has-sub" data-section="reports" onclick="toggleSubmenu(this)">
+        <i class="fa fa-file-lines nav-icon" style="color:#3b82f6"></i>
+        <span class="nav-label">Reports</span><i class="fa fa-chevron-down nav-arrow"></i>
+      </div>
+      <div class="nav-submenu">
+        <div class="nav-sub-item" onclick="navigate('materials-reports')">Materials Report</div>
+      </div>
+
+      <!-- Approvals -->
+      <div class="nav-item has-sub" data-section="approvals" onclick="toggleSubmenu(this)">
+        <i class="fa fa-circle-check nav-icon" style="color:#22c55e"></i>
+        <span class="nav-label">Approvals</span><i class="fa fa-chevron-down nav-arrow"></i>
+      </div>
+      <div class="nav-submenu">
+        <div class="nav-sub-item" onclick="navigate('incentive-approvals')">Incentive Approvals</div>
+        <div class="nav-sub-item" onclick="navigate('payroll-approval')">Payroll Approval</div>
+      </div>
+
+      <!-- Incentive Management -->
+      <div class="nav-item has-sub" data-section="incentive" onclick="toggleSubmenu(this)">
+        <i class="fa fa-coins nav-icon" style="color:#a855f7"></i>
+        <span class="nav-label">Incentive Management System</span>
+        <i class="fa fa-chevron-down nav-arrow"></i>
+      </div>
+      <div class="nav-submenu">
+        <div class="nav-sub-item" onclick="navigate('incentive-generator')">Incentive Generator</div>
+        <div class="nav-sub-item" onclick="navigate('stickering-incentive')">Stickering Incentive</div>
+        <div class="nav-sub-item" onclick="navigate('sales-incentive')">Sales Incentive</div>
+        <div class="nav-sub-item" onclick="navigate('grn-incentive')">GRN Incentive</div>
+        <div class="nav-sub-item" onclick="navigate('purchase-incentive')">Purchase Incentive</div>
+        <div class="nav-sub-item" onclick="navigate('pick-pack-incentive')">Pick and Pack Incentive</div>
+        <div class="nav-sub-item" onclick="navigate('purchase-data-entry-incentive')">Purchase Data Entry Incentive
+        </div>
+        <div class="nav-sub-item" onclick="navigate('billing-operator-incentive')">Billing Operator Incentive</div>
+        <div class="nav-sub-item" onclick="navigate('billing-checker-incentive')">Billing Checker Incentive</div>
+      </div>
+
+      <!-- Logs -->
+      <div class="nav-item has-sub" data-section="logs" onclick="toggleSubmenu(this)">
+        <i class="fa fa-file-alt nav-icon" style="color:#64748b"></i><span class="nav-label">Logs</span><i
+          class="fa fa-chevron-down nav-arrow"></i>
+      </div>
+      <div class="nav-submenu">
+        <div class="nav-sub-item" onclick="navigate('api-logs')">API Logs</div>
+      </div>
+
+      <!-- Payroll Management -->
+      <div class="nav-item has-sub" data-section="payroll" onclick="toggleSubmenu(this)">
+        <i class="fa fa-money-check-dollar nav-icon" style="color:#4ade80"></i>
+        <span class="nav-label">Payroll Management System</span>
+        <i class="fa fa-chevron-down nav-arrow"></i>
+      </div>
+      <div class="nav-submenu payroll-submenu">
+        <div class="nav-sub-item" onclick="navigate('payroll')">Payroll Entry</div>
+        <div class="nav-sub-item" onclick="navigate('bank-submission')">Bank Submission</div>
+        <div class="nav-sub-item" onclick="navigate('payslips')">Payslips</div>
+        <div class="nav-sub-item" onclick="navigate('my-payslips')">My Payslips</div>
+        <div class="nav-sub-item" onclick="navigate('employee-allocation')">Employee Allocation</div>
+      </div>
+
+      <!-- Accounts -->
+      <div class="nav-item has-sub" data-section="accounts" onclick="toggleSubmenu(this)">
+        <i class="fa fa-calculator nav-icon" style="color:#f97316"></i>
+        <span class="nav-label">Accounts</span>
+        <i class="fa fa-chevron-down nav-arrow"></i>
+      </div>
+      <div class="nav-submenu accounts-submenu">
+        <div class="nav-sub-item" onclick="navigate('master-data')">Master</div>
+        <div class="nav-sub-item" onclick="navigate('current-assets')">Current Assets</div>
+        <div class="nav-sub-item" onclick="navigate('payment-entry')">Payment Entry</div>
+        <div class="nav-sub-item" onclick="navigate('receipt-entry')">Receipt Entry</div>
+        <div class="nav-sub-item" onclick="navigate('ledger')">Ledger</div>
+        <div class="nav-sub-item" onclick="navigate('money-transfer')">Money Transfer</div>
+      </div>
+
+      <!-- Purchase Return -->
+      <div class="nav-item has-sub" data-section="purchase-return" onclick="toggleSubmenu(this)">
+        <i class="fa fa-boxes-stacked nav-icon" style="color:#ef4444"></i>
+        <span class="nav-label">Purchase Return</span>
+        <i class="fa fa-chevron-down nav-arrow"></i>
+      </div>
+      <div class="nav-submenu purchase-return-submenu">
+        <div class="nav-sub-item" onclick="navigate('purchase-return')">Issue Entry</div>
+        <div class="nav-sub-item" onclick="navigate('purchase-return-receipt')">Receipt Entry</div>
+        <div class="nav-sub-item" onclick="navigate('distributor-issue')">Distributor Issue</div>
+        <div class="nav-sub-item" onclick="navigate('stock-details')">Stock Details</div>
+      </div>
+      <!-- Stock -->
+      <div class="nav-item has-sub" data-section="stock" onclick="toggleSubmenu(this)">
+        <i class="fa fa-warehouse nav-icon" style="color:#6366f1"></i>
+        <span class="nav-label">Stock</span>
+        <i class="fa fa-chevron-down nav-arrow"></i>
+      </div>
+
+      <div class="nav-submenu">
+        <div class="nav-sub-item" onclick="navigate('stock-circle')">
+          Circle
+        </div>
+        <div class="nav-sub-item" onclick="navigate('stock-checker')">
+          Stock Checker
+        </div>
+        <div class="nav-sub-item" onclick="navigate('price-checker')">
+          Price Checker
+        </div>
+      </div>
+
+      <!-- Transport Management -->
+      <div class="nav-item" data-section="transport" onclick="navigate('transport')">
+        <i class="fa fa-truck nav-icon" style="color:#06b6d4"></i>
+        <span class="nav-label">Transport Management System</span>
+      </div>
+
+    </nav>
+  </aside>
+
+  <!-- ===================== TOPBAR ===================== -->
+  <div class="topbar" id="topbar">
+    <div class="topbar-left">
+      <div class="logo-collapsed" id="logoCollapsed">
+        <span class="logo-a1">A1</span><span class="logo-mart">MART</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="user-info">
+        <div class="user-details">
+          <span class="user-name">VIJAY ELUMALAI</span>
+          <span class="user-branch">A1-MART CORPORATE OFFICE</span>
+          <span class="user-role">IT AND SOFTWARE MANAGER</span>
+        </div>
+        <div class="user-avatar">
+          <i class="fa fa-user-tie"></i>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button class="topbar-btn" id="searchBtn" onclick="toggleSearch()" title="Search"><i
+            class="fa fa-magnifying-glass"></i></button>
+        <button class="topbar-btn" onclick="navigate('settings')" title="Settings"><i class="fa fa-gear"></i></button>
+        <button class="topbar-btn notif-btn" onclick="showNotifications()" title="Notifications"><i
+            class="fa fa-bell"></i><span class="notif-badge">3</span></button>
+        <button class="topbar-btn logout-btn" onclick="confirmLogout()" title="Logout"><i
+            class="fa fa-right-from-bracket"></i></button>
+      </div>
+    </div>
+
+    <!-- Search dropdown -->
+    <div class="search-panel" id="searchPanel">
+      <input type="text" id="searchInput" placeholder="Search pages..." oninput="searchPages(this.value)" />
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- ===================== MAIN CONTENT ===================== -->
+  <main class="main-content" id="mainContent">
+
+    <!-- ===== ACCOUNTS DASHBOARD ===== -->
+    <section class="page active" id="page-accounts-dashboard">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Accounts Dashboard</h1>
+        </div>
+        <div class="page-filters">
+          <select class="filter-select" id="branchFilter">
+            <option>All Branches</option>
+            <option>A1-MART CORPORATE OFFICE</option>
+            <option>A1MART-SARON</option>
+            <option>A1MART-DISTRIBUTION WAREHOUSE</option>
+          </select>
+          <select class="filter-select">
+            <option>All Designations</option>
+            <option>IT AND SOFTWARE MANAGER</option>
+            <option>BILLING OPERATOR</option>
+            <option>GRN-HELPER</option>
+          </select>
+          <input type="date" class="filter-date" id="fromDate" value="2026-10-23" />
+          <button class="date-clear-btn"><i class="fa fa-xmark"></i></button>
+          <input type="date" class="filter-date" id="toDate" value="2026-10-23" />
+          <button class="date-clear-btn"><i class="fa fa-xmark"></i></button>
+          <button class="clear-btn" onclick="clearFilters()">Clear</button>
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <div class="section-label">Overall Statistics</div>
+        <div class="stats-grid">
+          <div class="stat-card" id="statTotalUsers">
+            <div class="stat-label">Total Users</div>
+            <div class="stat-value" data-target="152">—</div>
+            <div class="stat-bar orange"></div>
+          </div>
+          <div class="stat-card" id="statTotalSales">
+            <div class="stat-label">Total Sales</div>
+            <div class="stat-value" data-target="₹48,32,500">—</div>
+            <div class="stat-bar orange"></div>
+          </div>
+          <div class="stat-card" id="statTotalBills">
+            <div class="stat-label">Total Bills</div>
+            <div class="stat-value" data-target="3,841">—</div>
+            <div class="stat-bar orange"></div>
+          </div>
+          <div class="stat-card" id="statAvgSales">
+            <div class="stat-label">Avg Sales/User</div>
+            <div class="stat-value" data-target="₹31,793">—</div>
+            <div class="stat-bar blue"></div>
+          </div>
+          <div class="stat-card" id="statAvgBill">
+            <div class="stat-label">Avg Bill Value</div>
+            <div class="stat-value" data-target="₹1,258">—</div>
+            <div class="stat-bar blue"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-title">Monthly Sales Overview</div>
+          <canvas id="salesChart" height="260"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Bills by Branch</div>
+          <canvas id="billsChart" height="260"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sales Target - Branch -->
+    <section class="page" id="page-target-branch">
+
+      <div class="target-branch-container">
+
+        <div class="target-branch-header">
+          Sales Target - Branch
+        </div>
+
+        <div class="target-branch-content">
+          <div class="table-responsive">
+            <table class="target-branch-table">
+              <thead>
+                <tr>
+                  <th>Branch <span>☰</span></th>
+                  <th>Target Month <span>☰</span></th>
+                  <th>Target Amount <span>☰</span></th>
+                  <th>Status <span>☰</span></th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>Dec 2025</td>
+                  <td>₹5,00,00,000.00</td>
+                  <td><span class="target-status success">Targets Set</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>Dec 2025</td>
+                  <td>₹3,60,00,000.00</td>
+                  <td><span class="target-status success">Targets Set</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+
+                <tr>
+                  <td>A1MART-VELLORE ROAD</td>
+                  <td>Nov 2025</td>
+                  <td>₹55,00,000.00</td>
+                  <td><span class="target-status pending">Pending</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>Nov 2025</td>
+                  <td>₹3,50,00,000.00</td>
+                  <td><span class="target-status success">Targets Set</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="target-branch-pagination">
+            <span>Page Size:</span>
+            <select aria-label="Page size">
+              <option selected>20</option>
+              <option>50</option>
+              <option>100</option>
+            </select>
+            <span>1 to 4 of 4</span>
+            <span class="pagination-controls">| ‹ &nbsp; Page 1 of 1 &nbsp; › |</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Sales Target - Section -->
+    <section class="page" id="page-target-section">
+
+      <div class="target-branch-container">
+
+        <div class="target-branch-header">
+          Sales Target - Section
+        </div>
+
+        <div class="target-branch-content">
+          <div class="table-responsive">
+            <table class="target-branch-table">
+              <thead>
+                <tr>
+                  <th>Branch</th>
+                  <th>Department</th>
+                  <th>Target Month</th>
+                  <th>Target Amount</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>COSMETICS AND SMALL ITEM</td>
+                  <td>Dec 2025</td>
+                  <td>₹16,00,000.00</td>
+                  <td><span class="target-status pending">Pending</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>GROCERY FOOD</td>
+                  <td>Dec 2025</td>
+                  <td>₹1,50,00,000.00</td>
+                  <td><span class="target-status pending">Pending</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>GROCERY NON FOOD</td>
+                  <td>Dec 2025</td>
+                  <td>₹1,04,00,000.00</td>
+                  <td><span class="target-status pending">Pending</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>HOUSEHOLD NECESSARIES</td>
+                  <td>Dec 2025</td>
+                  <td>₹90,00,000.00</td>
+                  <td><span class="target-status success">Targets Set</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>GROCERY FOOD</td>
+                  <td>Nov 2025</td>
+                  <td>₹2,50,00,000.00</td>
+                  <td><span class="target-status success">Targets Set</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>HOUSEHOLD NECESSARIES</td>
+                  <td>Nov 2025</td>
+                  <td>₹2,00,00,000.00</td>
+                  <td><span class="target-status success">Targets Set</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="target-branch-pagination">
+            <span>Page Size:</span>
+            <select aria-label="Page size">
+              <option selected>20</option>
+              <option>50</option>
+              <option>100</option>
+            </select>
+            <span>1 to 6 of 6</span>
+            <span class="pagination-controls">| ‹ &nbsp; Page 1 of 1 &nbsp; › |</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Sales Target - Employee -->
+    <section class="page" id="page-target-employee">
+
+      <div class="target-branch-container">
+
+        <div class="target-branch-header">
+          Sales Target - Employee
+        </div>
+
+        <div class="target-branch-content">
+          <div class="table-responsive">
+            <table class="target-branch-table">
+              <thead>
+                <tr>
+                  <th>Branch</th>
+                  <th>Department</th>
+                  <th>Section</th>
+                  <th>Target Month</th>
+                  <th>Target Amount</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>GROCERY FOOD</td>
+                  <td>A1MART GROCERIES</td>
+                  <td>Nov 2025</td>
+                  <td>₹2,10,00,000.00</td>
+                  <td><span class="target-status success">Targets Set</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>GROCERY FOOD</td>
+                  <td>LOOSE PRODUCTS</td>
+                  <td>Nov 2025</td>
+                  <td>₹40,00,000.00</td>
+                  <td><span class="target-status success">Targets Set</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>HOUSEHOLD NECESSARIES</td>
+                  <td>SMALL HOUSE HOLD</td>
+                  <td>Dec 2025</td>
+                  <td>₹90,00,000.00</td>
+                  <td><span class="target-status success">Targets Set</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>HOUSEHOLD NECESSARIES</td>
+                  <td>SMALL HOUSE HOLD</td>
+                  <td>Nov 2025</td>
+                  <td>₹2,00,00,000.00</td>
+                  <td><span class="target-status success">Targets Set</span></td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="target-branch-pagination">
+            <span>Page Size:</span>
+            <select aria-label="Page size">
+              <option selected>20</option>
+              <option>50</option>
+              <option>100</option>
+            </select>
+            <span>1 to 4 of 4</span>
+            <span class="pagination-controls">| ‹ &nbsp; Page 1 of 1 &nbsp; › |</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Sales Target Statistics -->
+    <section class="page" id="page-target-stats">
+
+      <div class="stats-filters">
+        <select id="statsBranch">
+          <option value="all">All Branches</option>
+          <option value="saron">A1MART-SARON</option>
+        </select>
+
+        <input type="month" id="statsMonth" value="2026-10">
+      </div>
+
+      <div class="stats-container">
+
+        <div class="stats-header">Target Statistics</div>
+
+        <div class="stats-content">
+
+          <!-- Summary Cards -->
+          <div class="stats-cards">
+            <div class="stats-card">
+              <span>Total Target</span>
+              <strong id="totalTarget">—</strong>
+            </div>
+
+            <div class="stats-card">
+              <span>Total Sales Made</span>
+              <strong id="totalSales">—</strong>
+            </div>
+
+            <div class="stats-card">
+              <span>Target Left</span>
+              <strong id="targetLeft">—</strong>
+            </div>
+
+            <div class="stats-card">
+              <span>Achievement %</span>
+              <strong id="achievement">—</strong>
+            </div>
+          </div>
+
+          <!-- Statistics Tabs -->
+          <div class="stats-tabs">
+            <button class="stats-tab active" onclick="showStatsTab('branch', this)">Branch</button>
+
+            <button class="stats-tab" onclick="showStatsTab('department', this)">Department</button>
+
+            <button class="stats-tab" onclick="showStatsTab('section', this)">Section</button>
+
+            <button class="stats-tab" onclick="showStatsTab('employee', this)">Employee</button>
+          </div>
+
+          <!-- Branch Statistics -->
+          <div class="stats-table-panel" id="stats-branch">
+            <div class="stats-panel-header">Branch-wise Statistics</div>
+
+            <div class="table-responsive">
+              <table class="target-branch-table">
+                <thead>
+                  <tr>
+                    <th>Branch Name</th>
+                    <th>Target Month</th>
+                    <th>Target Amount</th>
+                    <th>Sales Made</th>
+                    <th>Target Left</th>
+                    <th>Achievement %</th>
+                  </tr>
+                </thead>
+                <tbody id="branchStatsBody">
+                  <tr>
+                    <td colspan="6" class="no-rows">No Rows To Show</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="target-branch-pagination">
+              <span>Page Size:</span>
+              <select aria-label="Page size">
+                <option selected>20</option>
+                <option>50</option>
+                <option>100</option>
+              </select>
+              <span>0 to 0 of 0</span>
+              <span class="pagination-controls">Page 0 of 0</span>
+            </div>
+          </div>
+
+          <!-- Department Statistics -->
+          <div class="stats-table-panel" id="stats-department" hidden>
+            <div class="stats-panel-header">Department-wise Statistics</div>
+            <div class="table-responsive">
+              <table class="target-branch-table">
+                <thead>
+                  <tr>
+                    <th>Department</th>
+                    <th>Target Month</th>
+                    <th>Target Amount</th>
+                    <th>Sales Made</th>
+                    <th>Target Left</th>
+                    <th>Achievement %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="6" class="no-rows">No Rows To Show</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Section Statistics -->
+          <div class="stats-table-panel" id="stats-section" hidden>
+            <div class="stats-panel-header">Section-wise Statistics</div>
+            <div class="table-responsive">
+              <table class="target-branch-table">
+                <thead>
+                  <tr>
+                    <th>Section</th>
+                    <th>Target Month</th>
+                    <th>Target Amount</th>
+                    <th>Sales Made</th>
+                    <th>Target Left</th>
+                    <th>Achievement %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="6" class="no-rows">No Rows To Show</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Employee Statistics -->
+          <div class="stats-table-panel" id="stats-employee" hidden>
+            <div class="stats-panel-header">Employee-wise Statistics</div>
+            <div class="table-responsive">
+              <table class="target-branch-table">
+                <thead>
+                  <tr>
+                    <th>Employee</th>
+                    <th>Target Month</th>
+                    <th>Target Amount</th>
+                    <th>Sales Made</th>
+                    <th>Target Left</th>
+                    <th>Achievement %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="6" class="no-rows">No Rows To Show</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Sales Target - Department -->
+    <section class="page" id="page-target-department">
+
+      <div class="target-branch-container">
+
+        <div class="target-branch-header">
+          Sales Target - Department
+        </div>
+
+        <div class="target-branch-content">
+
+          <div class="table-responsive">
+            <table class="target-branch-table">
+              <thead>
+                <tr>
+                  <th>Branch <span>☰</span></th>
+                  <th>Target Month <span>☰</span></th>
+                  <th>Target Amount <span>☰</span></th>
+                  <th>Status <span>☰</span></th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>Dec 2025</td>
+                  <td>₹5,00,00,000.00</td>
+                  <td>
+                    <span class="target-status success">Targets Set</span>
+                  </td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>Dec 2025</td>
+                  <td>₹3,60,00,000.00</td>
+                  <td>
+                    <span class="target-status success">Targets Set</span>
+                  </td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+
+                <tr>
+                  <td>A1MART-VELLORE ROAD</td>
+                  <td>Nov 2025</td>
+                  <td>₹55,00,000.00</td>
+                  <td>
+                    <span class="target-status pending">Pending</span>
+                  </td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+
+                <tr>
+                  <td>A1MART-SARON</td>
+                  <td>Nov 2025</td>
+                  <td>₹3,50,00,000.00</td>
+                  <td>
+                    <span class="target-status success">Targets Set</span>
+                  </td>
+                  <td><button class="target-action">⋮</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="target-branch-pagination">
+            <span>Page Size:</span>
+
+            <select aria-label="Page size">
+              <option selected>20</option>
+              <option>50</option>
+              <option>100</option>
+            </select>
+
+            <span>1 to 4 of 4</span>
+
+            <span class="pagination-controls">
+              | ‹ &nbsp; Page 1 of 1 &nbsp; › |
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- EB CONSUMPTION PAGE -->
+    <section id="page-eb-consumption" class="page">
+
+      <div class="eb-page">
+
+        <!-- Page Header -->
+        <div class="eb-header">
+          <h2>EB Consumption</h2>
+          <button class="eb-add-btn" onclick="openEBAddModal()">
+            Add
+          </button>
+        </div>
+
+        <!-- Table Container -->
+        <div class="eb-table-container">
+          <table class="eb-table">
+            <thead>
+              <tr>
+                <th>ID <span class="filter-icon">☰</span></th>
+                <th>Branch <span class="filter-icon">☰</span></th>
+                <th>Date <span class="filter-icon">☰</span></th>
+                <th>Closing Units <span class="filter-icon">☰</span></th>
+                <th>Units Consumed <span class="filter-icon">☰</span></th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="ebConsumptionTableBody">
+              <tr>
+                <td>1372</td>
+                <td>A1MART-SARON</td>
+                <td>24 Oct 2026</td>
+                <td>312183.70</td>
+                <td>460.30 units</td>
+                <td>
+                  <button class="eb-action-btn" onclick="toggleEBActionMenu(this)">⋮</button>
+                  <div class="eb-action-menu" style="display: none;">
+                    <button onclick="editEBRecord(this)">Edit</button>
+                    <button onclick="deleteEBRecord(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>1371</td>
+                <td>A1MART-VELLORE ROAD</td>
+                <td>24 Oct 2026</td>
+                <td>69671.00</td>
+                <td>55.00 units</td>
+                <td>
+                  <button class="eb-action-btn" onclick="toggleEBActionMenu(this)">⋮</button>
+                  <div class="eb-action-menu" style="display: none;">
+                    <button onclick="editEBRecord(this)">Edit</button>
+                    <button onclick="deleteEBRecord(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>1370</td>
+                <td>A1MART-PRODUCTION WAREHOUSE</td>
+                <td>24 Oct 2026</td>
+                <td>15124.10</td>
+                <td>30.60 units</td>
+                <td>
+                  <button class="eb-action-btn" onclick="toggleEBActionMenu(this)">⋮</button>
+                  <div class="eb-action-menu" style="display: none;">
+                    <button onclick="editEBRecord(this)">Edit</button>
+                    <button onclick="deleteEBRecord(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="6" class="eb-demo-note">
+                  Sample rows are for layout demonstration.
+                  Replace them with your actual records.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TARGET ENTRY PAGE -->
+    <section id="page-target-entry" class="page">
+
+      <div class="target-entry-page">
+
+        <div class="target-entry-table-container">
+          <table class="target-entry-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Branch</th>
+                <th>Assigned To</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="targetEntryTableBody">
+              <tr>
+                <td>1</td>
+                <td>Morning Store Opening Check</td>
+                <td>A1MART-SARON</td>
+                <td>B.SATHYA</td>
+                <td>24/10/2026</td>
+                <td><span class="target-status status-done">Done</span></td>
+                <td>
+                  <button class="target-action-btn" onclick="toggleTargetActionMenu(this)">⋮</button>
+                  <div class="target-action-menu" style="display: none;">
+                    <button onclick="editTargetEntry(this)">Edit</button>
+                    <button onclick="deleteTargetEntry(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>2</td>
+                <td>Cold Chain Compliance</td>
+                <td>A1MART-SARON</td>
+                <td>RAMKUMAR M</td>
+                <td>24/10/2026</td>
+                <td><span class="target-status status-open">Open</span></td>
+                <td>
+                  <button class="target-action-btn" onclick="toggleTargetActionMenu(this)">⋮</button>
+                  <div class="target-action-menu" style="display: none;">
+                    <button onclick="editTargetEntry(this)">Edit</button>
+                    <button onclick="deleteTargetEntry(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>3</td>
+                <td>Security Round - Night</td>
+                <td>A1MART-DISTRIBUTION WAREHOUSE</td>
+                <td>BALU SRIDHAR</td>
+                <td>23/10/2026</td>
+                <td><span class="target-status status-done">Done</span></td>
+                <td>
+                  <button class="target-action-btn" onclick="toggleTargetActionMenu(this)">⋮</button>
+                  <div class="target-action-menu" style="display: none;">
+                    <button onclick="editTargetEntry(this)">Edit</button>
+                    <button onclick="deleteTargetEntry(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>4</td>
+                <td>Stock Level Verification</td>
+                <td>A1MART-SARON</td>
+                <td>VIJAY K</td>
+                <td>25/10/2026</td>
+                <td><span class="target-status status-progress">In Progress</span></td>
+                <td>
+                  <button class="target-action-btn" onclick="toggleTargetActionMenu(this)">⋮</button>
+                  <div class="target-action-menu" style="display: none;">
+                    <button onclick="editTargetEntry(this)">Edit</button>
+                    <button onclick="deleteTargetEntry(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PURCHASE ORDERS PAGE -->
+    <section id="page-purchase-order" class="page">
+
+      <div class="purchase-orders-page">
+
+        <!-- Header -->
+        <div class="po-header">
+          <h2>Purchase Orders</h2>
+          <button class="po-add-btn" onclick="openPurchaseOrderModal()">
+            Add
+          </button>
+        </div>
+
+        <!-- Table -->
+        <div class="po-table-container">
+          <table class="po-table">
+            <thead>
+              <tr>
+                <th>ID <span class="po-filter">☰</span></th>
+                <th>Purchase Order # <span class="po-filter">☰</span></th>
+                <th>Vendor <span class="po-filter">☰</span></th>
+                <th>Date <span class="po-filter">☰</span></th>
+                <th>Items <span class="po-filter">☰</span></th>
+                <th>Total Amount <span class="po-filter">☰</span></th>
+                <th>Status <span class="po-filter">☰</span></th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="purchaseOrdersTableBody">
+              <tr>
+                <td>162</td>
+                <td>PO-162</td>
+                <td>r s manufacturing</td>
+                <td>21/10/2026</td>
+                <td>2</td>
+                <td class="po-amount">₹35472.30</td>
+                <td><span class="po-status">Pe Created</span></td>
+                <td>
+                  <button class="po-action-btn" onclick="togglePurchaseOrderMenu(this)">⋮</button>
+                  <div class="po-action-menu" style="display:none;">
+                    <button onclick="editPurchaseOrder(this)">Edit</button>
+                    <button onclick="deletePurchaseOrder(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>161</td>
+                <td>PO-161</td>
+                <td>r s manufacturing</td>
+                <td>22/09/2026</td>
+                <td>5</td>
+                <td class="po-amount">₹75029.70</td>
+                <td><span class="po-status">Pe Created</span></td>
+                <td>
+                  <button class="po-action-btn" onclick="togglePurchaseOrderMenu(this)">⋮</button>
+                  <div class="po-action-menu" style="display:none;">
+                    <button onclick="editPurchaseOrder(this)">Edit</button>
+                    <button onclick="deletePurchaseOrder(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>160</td>
+                <td>PO-160</td>
+                <td>r s manufacturing</td>
+                <td>16/09/2026</td>
+                <td>1</td>
+                <td class="po-amount">₹13997.70</td>
+                <td><span class="po-status">Pe Created</span></td>
+                <td>
+                  <button class="po-action-btn" onclick="togglePurchaseOrderMenu(this)">⋮</button>
+                  <div class="po-action-menu" style="display:none;">
+                    <button onclick="editPurchaseOrder(this)">Edit</button>
+                    <button onclick="deletePurchaseOrder(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>159</td>
+                <td>PO-159</td>
+                <td>SWASTIK PACKAGING</td>
+                <td>12/09/2026</td>
+                <td>4</td>
+                <td class="po-amount">₹187561.00</td>
+                <td><span class="po-status">Pe Created</span></td>
+                <td>
+                  <button class="po-action-btn" onclick="togglePurchaseOrderMenu(this)">⋮</button>
+                  <div class="po-action-menu" style="display:none;">
+                    <button onclick="editPurchaseOrder(this)">Edit</button>
+                    <button onclick="deletePurchaseOrder(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>158</td>
+                <td>PO-158</td>
+                <td title="DISHA LABELS AND BARCODE S...">DISHA LABELS AND BARCODE S...</td>
+                <td>14/09/2026</td>
+                <td>3</td>
+                <td class="po-amount">₹21352.00</td>
+                <td><span class="po-status">Pe Created</span></td>
+                <td>
+                  <button class="po-action-btn" onclick="togglePurchaseOrderMenu(this)">⋮</button>
+                  <div class="po-action-menu" style="display:none;">
+                    <button onclick="editPurchaseOrder(this)">Edit</button>
+                    <button onclick="deletePurchaseOrder(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PURCHASE ENTRIES PAGE -->
+    <section id="page-purchase-entry" class="page">
+
+      <div class="purchase-entries-page">
+
+        <!-- Header -->
+        <div class="pe-header">
+          <h2>Purchase Entries</h2>
+          <button class="pe-add-btn" onclick="openPurchaseEntryModal()">
+            Add
+          </button>
+        </div>
+
+        <!-- Table -->
+        <div class="pe-table-container">
+          <table class="pe-table">
+            <thead>
+              <tr>
+                <th>ID <span class="pe-filter">☰</span></th>
+                <th>Invoice Number <span class="pe-filter">☰</span></th>
+                <th>Invoice Date <span class="pe-filter">☰</span></th>
+                <th>PO Number <span class="pe-filter">☰</span></th>
+                <th>Vendor <span class="pe-filter">☰</span></th>
+                <th>Items <span class="pe-filter">☰</span></th>
+                <th>Total Amount <span class="pe-filter">☰</span></th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="purchaseEntriesTableBody">
+
+              <tr>
+                <td>147</td>
+                <td>GST/11145/26-27</td>
+                <td>20/10/2026</td>
+                <td>PO-162</td>
+                <td>r s manufacturing</td>
+                <td>2</td>
+                <td class="pe-amount">₹35472.30</td>
+                <td>
+                  <button class="pe-action-btn" onclick="togglePurchaseEntryMenu(this)">⋮</button>
+                  <div class="pe-action-menu" style="display:none;">
+                    <button onclick="editPurchaseEntry(this)">Edit</button>
+                    <button onclick="deletePurchaseEntry(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>146</td>
+                <td>GST/9353/26-27</td>
+                <td>21/09/2026</td>
+                <td>PO-161</td>
+                <td>r s manufacturing</td>
+                <td>5</td>
+                <td class="pe-amount">₹75029.70</td>
+                <td>
+                  <button class="pe-action-btn" onclick="togglePurchaseEntryMenu(this)">⋮</button>
+                  <div class="pe-action-menu" style="display:none;">
+                    <button onclick="editPurchaseEntry(this)">Edit</button>
+                    <button onclick="deletePurchaseEntry(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>145</td>
+                <td>GST/9008/26-27</td>
+                <td>15/09/2026</td>
+                <td>PO-160</td>
+                <td>r s manufacturing</td>
+                <td>1</td>
+                <td class="pe-amount">₹13997.70</td>
+                <td>
+                  <button class="pe-action-btn" onclick="togglePurchaseEntryMenu(this)">⋮</button>
+                  <div class="pe-action-menu" style="display:none;">
+                    <button onclick="editPurchaseEntry(this)">Edit</button>
+                    <button onclick="deletePurchaseEntry(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>144</td>
+                <td>043</td>
+                <td>11/09/2026</td>
+                <td>PO-159</td>
+                <td>SWASTIK PACKAGING</td>
+                <td>4</td>
+                <td class="pe-amount">₹187561.00</td>
+                <td>
+                  <button class="pe-action-btn" onclick="togglePurchaseEntryMenu(this)">⋮</button>
+                  <div class="pe-action-menu" style="display:none;">
+                    <button onclick="editPurchaseEntry(this)">Edit</button>
+                    <button onclick="deletePurchaseEntry(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>143</td>
+                <td>DBS/26-27/2289</td>
+                <td>04/09/2026</td>
+                <td>PO-158</td>
+                <td>DISHA LABELS AND BARCODE S...</td>
+                <td>3</td>
+                <td class="pe-amount">₹21352.00</td>
+                <td>
+                  <button class="pe-action-btn" onclick="togglePurchaseEntryMenu(this)">⋮</button>
+                  <div class="pe-action-menu" style="display:none;">
+                    <button onclick="editPurchaseEntry(this)">Edit</button>
+                    <button onclick="deletePurchaseEntry(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MATERIALS REQUEST PAGE -->
+    <section id="page-materials-request" class="page">
+
+      <div class="mr-page">
+
+        <!-- Page Header -->
+        <div class="mr-header">
+          <h2>Materials Request</h2>
+          <button class="mr-add-btn" onclick="openMaterialsRequestModal()">
+            Add
+          </button>
+        </div>
+
+        <!-- Table -->
+        <div class="mr-table-container">
+          <table class="mr-table">
+            <thead>
+              <tr>
+                <th>ID <span class="mr-filter">☰</span></th>
+                <th>Creator Name <span class="mr-filter">☰</span></th>
+                <th>Branch <span class="mr-filter">☰</span></th>
+                <th>Items Count <span class="mr-filter">☰</span></th>
+                <th>Created At <span class="mr-filter">☰</span></th>
+                <th>Approved At <span class="mr-filter">☰</span></th>
+                <th>Approval Status <span class="mr-filter">☰</span></th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="materialsRequestTableBody">
+
+              <tr>
+                <td>707</td>
+                <td>KARTHIK RAJA J</td>
+                <td title="AIMART-DISTRIBUTION WAREHOUSE">AIMART-DISTRIBUTI...</td>
+                <td>1</td>
+                <td>Oct 23, 2026, 2:03 PM</td>
+                <td>-</td>
+                <td><span class="mr-status">Pending</span></td>
+                <td>
+                  <button class="mr-action-btn" onclick="toggleMaterialsRequestMenu(this)">⋮</button>
+                  <div class="mr-action-menu" style="display:none;">
+                    <button onclick="viewMaterialsRequest(this)">View</button>
+                    <button onclick="editMaterialsRequest(this)">Edit</button>
+                    <button onclick="deleteMaterialsRequest(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>706</td>
+                <td>KARTHIK RAJA J</td>
+                <td title="AIMART-DISTRIBUTION WAREHOUSE">AIMART-DISTRIBUTI...</td>
+                <td>1</td>
+                <td>Oct 21, 2026, 11:59 AM</td>
+                <td>-</td>
+                <td><span class="mr-status">Pending</span></td>
+                <td>
+                  <button class="mr-action-btn" onclick="toggleMaterialsRequestMenu(this)">⋮</button>
+                  <div class="mr-action-menu" style="display:none;">
+                    <button onclick="viewMaterialsRequest(this)">View</button>
+                    <button onclick="editMaterialsRequest(this)">Edit</button>
+                    <button onclick="deleteMaterialsRequest(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>705</td>
+                <td>KARTHIK RAJA J</td>
+                <td title="AIMART-DISTRIBUTION WAREHOUSE">AIMART-DISTRIBUTI...</td>
+                <td>1</td>
+                <td>Oct 21, 2026, 11:57 AM</td>
+                <td>-</td>
+                <td><span class="mr-status">Pending</span></td>
+                <td>
+                  <button class="mr-action-btn" onclick="toggleMaterialsRequestMenu(this)">⋮</button>
+                  <div class="mr-action-menu" style="display:none;">
+                    <button onclick="viewMaterialsRequest(this)">View</button>
+                    <button onclick="editMaterialsRequest(this)">Edit</button>
+                    <button onclick="deleteMaterialsRequest(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>704</td>
+                <td>SANJAY S</td>
+                <td title="AIMART-DISTRIBUTION WAREHOUSE">AIMART-DISTRIBUTI...</td>
+                <td>1</td>
+                <td>Oct 12, 2026, 10:19 AM</td>
+                <td>-</td>
+                <td><span class="mr-status">Pending</span></td>
+                <td>
+                  <button class="mr-action-btn" onclick="toggleMaterialsRequestMenu(this)">⋮</button>
+                  <div class="mr-action-menu" style="display:none;">
+                    <button onclick="viewMaterialsRequest(this)">View</button>
+                    <button onclick="editMaterialsRequest(this)">Edit</button>
+                    <button onclick="deleteMaterialsRequest(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>703</td>
+                <td>SANJAY S</td>
+                <td title="AIMART-DISTRIBUTION WAREHOUSE">AIMART-DISTRIBUTI...</td>
+                <td>1</td>
+                <td>Oct 12, 2026, 10:17 AM</td>
+                <td>-</td>
+                <td><span class="mr-status">Pending</span></td>
+                <td>
+                  <button class="mr-action-btn" onclick="toggleMaterialsRequestMenu(this)">⋮</button>
+                  <div class="mr-action-menu" style="display:none;">
+                    <button onclick="viewMaterialsRequest(this)">View</button>
+                    <button onclick="editMaterialsRequest(this)">Edit</button>
+                    <button onclick="deleteMaterialsRequest(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STOCK ADDITION PAGE -->
+    <section id="page-stock-addition" class="page">
+
+      <div class="sa-page">
+
+        <!-- Header -->
+        <div class="sa-header">
+          <h2>Stock Addition</h2>
+          <button class="sa-add-btn" onclick="openStockAdditionModal()">
+            Add
+          </button>
+        </div>
+
+        <!-- Table -->
+        <div class="sa-table-container">
+          <table class="sa-table">
+            <thead>
+              <tr>
+                <th>ID <span class="sa-filter">☰</span></th>
+                <th>Name <span class="sa-filter">☰</span></th>
+                <th>Items Count <span class="sa-filter">☰</span></th>
+                <th>Approval Status <span class="sa-filter">☰</span></th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="stockAdditionTableBody">
+              <tr>
+                <td>1</td>
+                <td>VIJAY ELUMALAI</td>
+                <td>1</td>
+                <td><span class="sa-status">Approved</span></td>
+                <td>
+                  <button class="sa-action-btn" onclick="toggleStockAdditionMenu(this)">⋮</button>
+                  <div class="sa-action-menu" style="display:none;">
+                    <button onclick="viewStockAddition(this)">View</button>
+                    <button onclick="editStockAddition(this)">Edit</button>
+                    <button onclick="deleteStockAddition(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>2</td>
+                <td>VIJAY ELUMALAI</td>
+                <td>19</td>
+                <td><span class="sa-status">Approved</span></td>
+                <td>
+                  <button class="sa-action-btn" onclick="toggleStockAdditionMenu(this)">⋮</button>
+                  <div class="sa-action-menu" style="display:none;">
+                    <button onclick="viewStockAddition(this)">View</button>
+                    <button onclick="editStockAddition(this)">Edit</button>
+                    <button onclick="deleteStockAddition(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>3</td>
+                <td>SOORYA A K</td>
+                <td>1</td>
+                <td><span class="sa-status">Approved</span></td>
+                <td>
+                  <button class="sa-action-btn" onclick="toggleStockAdditionMenu(this)">⋮</button>
+                  <div class="sa-action-menu" style="display:none;">
+                    <button onclick="viewStockAddition(this)">View</button>
+                    <button onclick="editStockAddition(this)">Edit</button>
+                    <button onclick="deleteStockAddition(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Pagination -->
+          <div class="sa-pagination">
+            <div class="sa-page-size">
+              <label for="saPageSize">Page Size:</label>
+              <select id="saPageSize" onchange="renderStockAdditionTable()">
+                <option value="10">10</option>
+                <option value="20" selected>20</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+
+            <span id="saRecordInfo">1 to 3 of 3</span>
+
+            <div class="sa-page-controls">
+              <button onclick="changeStockAdditionPage(1)" title="First page">|‹</button>
+              <button onclick="changeStockAdditionPage(-1)" title="Previous page">‹</button>
+              <span id="saPageInfo">Page 1 of 1</span>
+              <button onclick="changeStockAdditionPage(1)" title="Next page">›</button>
+              <button onclick="changeStockAdditionPage(999999)" title="Last page">›|</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ALL MATERIALS PAGE -->
+    <section id="page-all-materials" class="page">
+      <div class="materials-page">
+
+        <!-- Header -->
+        <div class="materials-header">
+          <h2>Materials</h2>
+          <div class="materials-header-actions">
+            <button class="materials-add-category-btn" onclick="openMaterialCategoryModal()">
+              Add Category
+            </button>
+            <button class="materials-add-btn" onclick="openMaterialModal()">
+              Add
+            </button>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="materials-table-container">
+          <table class="materials-table">
+            <thead>
+              <tr>
+                <th>ID <span class="materials-filter">☰</span></th>
+                <th>Image</th>
+                <th>Name <span class="materials-filter">☰</span></th>
+                <th>Live Stock <span class="materials-filter">☰</span></th>
+                <th>Category <span class="materials-filter">☰</span></th>
+                <th>Supplier <span class="materials-filter">☰</span></th>
+                <th>Status <span class="materials-filter">☰</span></th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="materialsTableBody">
+              <tr>
+                <td>1</td>
+                <td>
+                  <div class="material-image-placeholder material-yellow">
+                    52X27
+                  </div>
+                </td>
+                <td title="52*27 Barcode Sticker">52*27 Barcode Sticker...</td>
+                <td>231400</td>
+                <td>ROLLS</td>
+                <td>-</td>
+                <td><span class="materials-status">Active</span></td>
+                <td>
+                  <button class="materials-action-btn" onclick="toggleMaterialsMenu(this)">⋮</button>
+                  <div class="materials-action-menu" style="display:none;">
+                    <button onclick="viewMaterial(this)">View</button>
+                    <button onclick="editMaterial(this)">Edit</button>
+                    <button onclick="deleteMaterial(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>2</td>
+                <td>
+                  <div class="material-image-placeholder material-grid">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                </td>
+                <td title="70*30 Barcode Sticker">70*30 Barcode Sticker...</td>
+                <td>306</td>
+                <td>ROLLS</td>
+                <td>-</td>
+                <td><span class="materials-status">Active</span></td>
+                <td>
+                  <button class="materials-action-btn" onclick="toggleMaterialsMenu(this)">⋮</button>
+                  <div class="materials-action-menu" style="display:none;">
+                    <button onclick="viewMaterial(this)">View</button>
+                    <button onclick="editMaterial(this)">Edit</button>
+                    <button onclick="deleteMaterial(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>3</td>
+                <td>
+                  <div class="material-image-placeholder material-green">
+                    40X12
+                  </div>
+                </td>
+                <td title="40*12 Barcode Sticker">40*12 Barcode Sticker ...</td>
+                <td>470700</td>
+                <td>ROLLS</td>
+                <td>-</td>
+                <td><span class="materials-status">Active</span></td>
+                <td>
+                  <button class="materials-action-btn" onclick="toggleMaterialsMenu(this)">⋮</button>
+                  <div class="materials-action-menu" style="display:none;">
+                    <button onclick="viewMaterial(this)">View</button>
+                    <button onclick="editMaterial(this)">Edit</button>
+                    <button onclick="deleteMaterial(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>4</td>
+                <td>
+                  <div class="material-image-placeholder material-roll">
+                    <span>▱</span>
+                  </div>
+                </td>
+                <td title="50*50 Barcode Sticker">50*50 Barcode Sticker...</td>
+                <td>6</td>
+                <td>ROLLS</td>
+                <td>-</td>
+                <td><span class="materials-status">Active</span></td>
+                <td>
+                  <button class="materials-action-btn" onclick="toggleMaterialsMenu(this)">⋮</button>
+                  <div class="materials-action-menu" style="display:none;">
+                    <button onclick="viewMaterial(this)">View</button>
+                    <button onclick="editMaterial(this)">Edit</button>
+                    <button onclick="deleteMaterial(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>5</td>
+                <td>
+                  <div class="material-image-placeholder material-peach">
+                    40X60
+                  </div>
+                </td>
+                <td title="40*60 Barcode Sticker">40*60 Barcode Sticker...</td>
+                <td>118312</td>
+                <td>ROLLS</td>
+                <td>-</td>
+                <td><span class="materials-status">Active</span></td>
+                <td>
+                  <button class="materials-action-btn" onclick="toggleMaterialsMenu(this)">⋮</button>
+                  <div class="materials-action-menu" style="display:none;">
+                    <button onclick="viewMaterial(this)">View</button>
+                    <button onclick="editMaterial(this)">Edit</button>
+                    <button onclick="deleteMaterial(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>6</td>
+                <td>
+                  <div class="material-image-placeholder material-green">
+                    52X14
+                  </div>
+                </td>
+                <td title="52*14 Barcode Sticker">52*14 Barcode Sticker ...</td>
+                <td>35000</td>
+                <td>ROLLS</td>
+                <td>-</td>
+                <td><span class="materials-status">Active</span></td>
+                <td>
+                  <button class="materials-action-btn" onclick="toggleMaterialsMenu(this)">⋮</button>
+                  <div class="materials-action-menu" style="display:none;">
+                    <button onclick="viewMaterial(this)">View</button>
+                    <button onclick="editMaterial(this)">Edit</button>
+                    <button onclick="deleteMaterial(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>7</td>
+                <td>
+                  <div class="material-image-placeholder material-yellow">
+                    80X35
+                  </div>
+                </td>
+                <td title="80*35 AIMart Barcode Sticker">80*35 AIMart Barcode...</td>
+                <td>78418</td>
+                <td>ROLLS</td>
+                <td>-</td>
+                <td><span class="materials-status">Active</span></td>
+                <td>
+                  <button class="materials-action-btn" onclick="toggleMaterialsMenu(this)">⋮</button>
+                  <div class="materials-action-menu" style="display:none;">
+                    <button onclick="viewMaterial(this)">View</button>
+                    <button onclick="editMaterial(this)">Edit</button>
+                    <button onclick="deleteMaterial(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STOCK CIRCLE PAGE -->
+    <section id="page-stock-circle" class="page">
+
+      <div class="circle-page">
+
+        <!-- Page Header -->
+        <div class="circle-header">
+          <h2>Add Circle</h2>
+        </div>
+
+        <!-- Circle Form -->
+        <form id="circleForm" class="circle-form">
+
+          <!-- Branch Selection -->
+          <div class="circle-field">
+            <label for="circleBranch">Select Branch</label>
+
+            <select id="circleBranch" required>
+              <option value="">Click here to select branch...</option>
+              <option value="A1MART-SARON">A1MART-SARON</option>
+              <option value="A1MART-VELLORE ROAD">A1MART-VELLORE ROAD</option>
+              <option value="A1MART-DISTRIBUTION WAREHOUSE">
+                A1MART-DISTRIBUTION WAREHOUSE
+              </option>
+              <option value="A1MART-PRODUCTION WAREHOUSE">
+                A1MART-PRODUCTION WAREHOUSE
+              </option>
+              <option value="A1MART CORPORATE OFFICE">
+                A1MART CORPORATE OFFICE
+              </option>
+            </select>
+          </div>
+
+          <!-- Period Panel -->
+          <div class="circle-period">
+
+            <div class="circle-period-header">
+              Period
+            </div>
+
+            <div class="circle-period-body">
+              <div class="circle-field circle-period-field">
+                <label for="circlePeriodType">Period Type</label>
+
+                <select id="circlePeriodType" required>
+                  <option value="">Select Period Type</option>
+                  <option value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="quarterly">Quarterly</option>
+                  <option value="yearly">Yearly</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Department, Category and Subcategory -->
+          <div class="circle-fields-row">
+
+            <div class="circle-field">
+              <label for="circleDepartments">Departments</label>
+
+              <select id="circleDepartments" multiple required>
+                <option value="Sales">Sales</option>
+                <option value="Purchase">Purchase</option>
+                <option value="Inventory">Inventory</option>
+                <option value="Accounts">Accounts</option>
+                <option value="Operations">Operations</option>
+              </select>
+
+              <small>Hold Ctrl to select multiple departments.</small>
+            </div>
+
+            <div class="circle-field">
+              <label for="circleCategory">Category</label>
+
+              <select id="circleCategory" disabled required>
+                <option value="">Select Category</option>
+                <option value="General">General</option>
+                <option value="Performance">Performance</option>
+                <option value="Compliance">Compliance</option>
+              </select>
+            </div>
+
+            <div class="circle-field">
+              <label for="circleSubcategory">Subcategory</label>
+
+              <select id="circleSubcategory" disabled required>
+                <option value="">Select Subcategory</option>
+                <option value="Daily Tasks">Daily Tasks</option>
+                <option value="Monthly Review">Monthly Review</option>
+                <option value="Audit">Audit</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- Form Actions -->
+          <div class="circle-actions">
+            <button type="reset" class="circle-reset-btn">
+              Reset
+            </button>
+
+            <button type="submit" class="circle-create-btn">
+              Create
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </section>
+
+    <!-- STOCK CHECKER PAGE -->
+    <section id="page-stock-checker" class="page">
+
+      <div class="stock-checker-page">
+
+        <!-- Page Header -->
+        <div class="stock-checker-header">
+          <h2>Stock Checker</h2>
+          <button class="stock-checker-add-btn" onclick="openStockCheckerAddModal()">
+            Add
+          </button>
+        </div>
+
+        <!-- Table -->
+        <div class="stock-checker-table-wrapper">
+          <table class="stock-checker-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Branch</th>
+                <th>Type</th>
+                <th>Departments</th>
+                <th>Category</th>
+                <th>Subcategory</th>
+                <th>Period</th>
+                <th>Days Left</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="stockCheckerTableBody">
+
+              <tr>
+                <td>1</td>
+                <td title="A1MART-VELLORE ROAD">
+                  A1MART-VELLOR...
+                </td>
+                <td>quarterly</td>
+                <td title="spares & toys, hardware">
+                  spares &amp; toys, h...
+                </td>
+                <td>-</td>
+                <td>-</td>
+                <td title="01 Oct 2026 - 31 Dec 2026">
+                  01 Oct 2026 - 31...
+                </td>
+                <td>
+                  <span class="stock-days-left">
+                    68 days left
+                  </span>
+                </td>
+                <td class="stock-action-cell">
+                  <button class="stock-checker-action-btn" onclick="toggleStockCheckerMenu(this)" aria-label="Actions">
+                    ⋮
+                  </button>
+
+                  <div class="stock-checker-action-menu">
+                    <button onclick="editStockChecker(this)">
+                      Edit
+                    </button>
+                    <button onclick="deleteStockChecker(this)">
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>2</td>
+                <td title="A1MART-DISTRIBUTION WAREHOUSE">
+                  A1MART-DISTRIB...
+                </td>
+                <td>monthly</td>
+                <td title="groceries non food">
+                  groceries non fo...
+                </td>
+                <td>-</td>
+                <td>-</td>
+                <td title="Oct 2026 - Oct 2026">
+                  Oct 2026 - Oct 2...
+                </td>
+                <td>
+                  <span class="stock-days-overdue">
+                    23 days overdue
+                  </span>
+                </td>
+                <td class="stock-action-cell">
+                  <button class="stock-checker-action-btn" onclick="toggleStockCheckerMenu(this)" aria-label="Actions">
+                    ⋮
+                  </button>
+
+                  <div class="stock-checker-action-menu">
+                    <button onclick="editStockChecker(this)">
+                      Edit
+                    </button>
+                    <button onclick="deleteStockChecker(this)">
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>3</td>
+                <td title="A1MART-PRODUCTION WAREHOUSE">
+                  A1MART-PRODU...
+                </td>
+                <td>monthly</td>
+                <td title="spares & toys, hardware">
+                  spares &amp; toys, h...
+                </td>
+                <td>-</td>
+                <td>-</td>
+                <td title="Oct 2026 - Oct 2026">
+                  Oct 2026 - Oct 2...
+                </td>
+                <td>
+                  <span class="stock-days-overdue">
+                    23 days overdue
+                  </span>
+                </td>
+                <td class="stock-action-cell">
+                  <button class="stock-checker-action-btn" onclick="toggleStockCheckerMenu(this)" aria-label="Actions">
+                    ⋮
+                  </button>
+
+                  <div class="stock-checker-action-menu">
+                    <button onclick="editStockChecker(this)">
+                      Edit
+                    </button>
+                    <button onclick="deleteStockChecker(this)">
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>4</td>
+                <td title="A1MART-SARON">A1MART-SARON</td>
+                <td>quarterly</td>
+                <td title="spares & toys, hardware">
+                  spares &amp; toys, h...
+                </td>
+                <td>-</td>
+                <td>-</td>
+                <td title="01 Oct 2026 - 31 Dec 2026">
+                  01 Oct 2026 - 31...
+                </td>
+                <td>
+                  <span class="stock-days-left">
+                    68 days left
+                  </span>
+                </td>
+                <td class="stock-action-cell">
+                  <button class="stock-checker-action-btn" onclick="toggleStockCheckerMenu(this)" aria-label="Actions">
+                    ⋮
+                  </button>
+
+                  <div class="stock-checker-action-menu">
+                    <button onclick="editStockChecker(this)">
+                      Edit
+                    </button>
+                    <button onclick="deleteStockChecker(this)">
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="stock-checker-pagination">
+          <div class="stock-page-size">
+            <label for="stockCheckerPageSize">Page Size:</label>
+            <select id="stockCheckerPageSize">
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+
+          <span id="stockCheckerRecordCount">1 to 4 of 4</span>
+
+          <div class="stock-pagination-buttons">
+            <button disabled aria-label="First page">«</button>
+            <button disabled aria-label="Previous page">‹</button>
+            <span>Page 1 of 1</span>
+            <button disabled aria-label="Next page">›</button>
+            <button disabled aria-label="Last page">»</button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MATERIALS CATEGORY PAGE -->
+    <section id="page-materials-category" class="page">
+
+      <div class="mc-page">
+
+        <!-- Header -->
+        <div class="mc-header">
+          <h2>Materials Category</h2>
+
+          <button class="mc-add-btn" onclick="openCategoryModal()">
+            Add
+          </button>
+        </div>
+
+        <!-- Table -->
+        <div class="mc-table-container">
+          <table class="mc-table">
+            <thead>
+              <tr>
+                <th>ID <span class="mc-filter">☰</span></th>
+                <th>Name <span class="mc-filter">☰</span></th>
+                <th>Status <span class="mc-filter">☰</span></th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="materialsCategoryTableBody">
+              <tr>
+                <td>1</td>
+                <td>STICKERS</td>
+                <td><span class="mc-status mc-active">Active</span></td>
+                <td>
+                  <button class="mc-action-btn" onclick="toggleCategoryMenu(this)">⋮</button>
+                  <div class="mc-action-menu" style="display:none;">
+                    <button onclick="editCategory(this)">Edit</button>
+                    <button onclick="deleteCategory(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>2</td>
+                <td>SYSTEM HARDWARES</td>
+                <td><span class="mc-status mc-active">Active</span></td>
+                <td>
+                  <button class="mc-action-btn" onclick="toggleCategoryMenu(this)">⋮</button>
+                  <div class="mc-action-menu" style="display:none;">
+                    <button onclick="editCategory(this)">Edit</button>
+                    <button onclick="deleteCategory(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>3</td>
+                <td>PACKING COVERS</td>
+                <td><span class="mc-status mc-active">Active</span></td>
+                <td>
+                  <button class="mc-action-btn" onclick="toggleCategoryMenu(this)">⋮</button>
+                  <div class="mc-action-menu" style="display:none;">
+                    <button onclick="editCategory(this)">Edit</button>
+                    <button onclick="deleteCategory(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>4</td>
+                <td>Loop pins and Tags</td>
+                <td><span class="mc-status mc-active">Active</span></td>
+                <td>
+                  <button class="mc-action-btn" onclick="toggleCategoryMenu(this)">⋮</button>
+                  <div class="mc-action-menu" style="display:none;">
+                    <button onclick="editCategory(this)">Edit</button>
+                    <button onclick="deleteCategory(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>5</td>
+                <td>BINS</td>
+                <td><span class="mc-status mc-active">Active</span></td>
+                <td>
+                  <button class="mc-action-btn" onclick="toggleCategoryMenu(this)">⋮</button>
+                  <div class="mc-action-menu" style="display:none;">
+                    <button onclick="editCategory(this)">Edit</button>
+                    <button onclick="deleteCategory(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>6</td>
+                <td>paytm edc machine</td>
+                <td><span class="mc-status mc-active">Active</span></td>
+                <td>
+                  <button class="mc-action-btn" onclick="toggleCategoryMenu(this)">⋮</button>
+                  <div class="mc-action-menu" style="display:none;">
+                    <button onclick="editCategory(this)">Edit</button>
+                    <button onclick="deleteCategory(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>7</td>
+                <td>SAF PL 1210-02 PLAIN TOP BLUE</td>
+                <td><span class="mc-status mc-active">Active</span></td>
+                <td>
+                  <button class="mc-action-btn" onclick="toggleCategoryMenu(this)">⋮</button>
+                  <div class="mc-action-menu" style="display:none;">
+                    <button onclick="editCategory(this)">Edit</button>
+                    <button onclick="deleteCategory(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>8</td>
+                <td>SAF PL660X670X130MM</td>
+                <td><span class="mc-status mc-active">Active</span></td>
+                <td>
+                  <button class="mc-action-btn" onclick="toggleCategoryMenu(this)">⋮</button>
+                  <div class="mc-action-menu" style="display:none;">
+                    <button onclick="editCategory(this)">Edit</button>
+                    <button onclick="deleteCategory(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>9</td>
+                <td>PALLET</td>
+                <td><span class="mc-status mc-active">Active</span></td>
+                <td>
+                  <button class="mc-action-btn" onclick="toggleCategoryMenu(this)">⋮</button>
+                  <div class="mc-action-menu" style="display:none;">
+                    <button onclick="editCategory(this)">Edit</button>
+                    <button onclick="deleteCategory(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>10</td>
+                <td>ELECTRONIC WEIGHING MACHINE</td>
+                <td><span class="mc-status mc-active">Active</span></td>
+                <td>
+                  <button class="mc-action-btn" onclick="toggleCategoryMenu(this)">⋮</button>
+                  <div class="mc-action-menu" style="display:none;">
+                    <button onclick="editCategory(this)">Edit</button>
+                    <button onclick="deleteCategory(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>11</td>
+                <td>TROLLY</td>
+                <td><span class="mc-status mc-active">Active</span></td>
+                <td>
+                  <button class="mc-action-btn" onclick="toggleCategoryMenu(this)">⋮</button>
+                  <div class="mc-action-menu" style="display:none;">
+                    <button onclick="editCategory(this)">Edit</button>
+                    <button onclick="deleteCategory(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>12</td>
+                <td>Inactive</td>
+                <td><span class="mc-status mc-inactive">Inactive</span></td>
+                <td>
+                  <button class="mc-action-btn" onclick="toggleCategoryMenu(this)">⋮</button>
+                  <div class="mc-action-menu" style="display:none;">
+                    <button onclick="editCategory(this)">Edit</button>
+                    <button onclick="deleteCategory(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>13</td>
+                <td>ratan plastics</td>
+                <td><span class="mc-status mc-active">Active</span></td>
+                <td>
+                  <button class="mc-action-btn" onclick="toggleCategoryMenu(this)">⋮</button>
+                  <div class="mc-action-menu" style="display:none;">
+                    <button onclick="editCategory(this)">Edit</button>
+                    <button onclick="deleteCategory(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- PRICE CHECKER PAGE -->
+    <section id="page-price-checker" class="page">
+
+      <div class="price-checker-page">
+
+        <!-- Page Header -->
+        <div class="price-checker-header">
+          <h2>Price Checker</h2>
+
+          <button class="price-export-btn" onclick="exportPriceChecker()">
+            Export
+          </button>
+        </div>
+
+        <!-- Filters Panel -->
+        <div class="price-filters-panel">
+
+          <div class="price-panel-title">Filters</div>
+
+          <div class="price-filters-body">
+
+            <!-- Branch -->
+            <div class="price-field price-branch-field">
+              <label for="priceBranch">Branch</label>
+
+              <select id="priceBranch">
+                <option value="">All Branches</option>
+                <option>A1MART-SARON</option>
+                <option>A1MART-VELLORE ROAD</option>
+                <option>A1MART-DISTRIBUTION WAREHOUSE</option>
+                <option>A1MART-PRODUCTION WAREHOUSE</option>
+                <option>A1MART CORPORATE OFFICE</option>
+              </select>
+            </div>
+
+            <!-- Department, Category, Subcategory -->
+            <div class="price-filter-grid">
+
+              <div class="price-field">
+                <label for="priceDepartment">Department</label>
+                <input id="priceDepartment" type="text" placeholder="Search department...">
+              </div>
+
+              <div class="price-field">
+                <label for="priceCategory">Category</label>
+                <input id="priceCategory" type="text" placeholder="Search category...">
+              </div>
+
+              <div class="price-field">
+                <label for="priceSubcategory">Subcategory</label>
+                <input id="priceSubcategory" type="text" placeholder="Search subcategory...">
+              </div>
+
+              <div class="price-field">
+                <label for="priceManufacturer">Manufacturer</label>
+                <input id="priceManufacturer" type="text" placeholder="Search manufacturer...">
+              </div>
+
+              <div class="price-field">
+                <label for="priceBrand">Brand</label>
+                <input id="priceBrand" type="text" placeholder="Search brand...">
+              </div>
+
+              <div class="price-field">
+                <label for="priceBuyer">Buyer</label>
+                <input id="priceBuyer" type="text" placeholder="Search buyer...">
+              </div>
+
+            </div>
+
+            <!-- Stock Checkbox -->
+            <label class="price-stock-checkbox">
+              <input type="checkbox" id="hideOutOfStock" checked>
+              <span>Hide out of stock products</span>
+            </label>
+
+          </div>
+        </div>
+
+        <!-- Products Panel -->
+        <div class="price-products-panel">
+
+          <div class="price-panel-title">Products</div>
+
+          <div class="price-products-toolbar">
+            <button type="button" class="price-barcode-btn" onclick="scanPriceBarcode()" title="Scan barcode"
+              aria-label="Scan barcode">
+              ▥
+            </button>
+
+            <button type="button" class="price-check-btn" onclick="checkProductPrice()">
+              Check Price
+            </button>
+          </div>
+
+          <!-- Products Table -->
+          <div class="price-products-table-wrapper">
+            <table class="price-products-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Product</th>
+                  <th>Branch</th>
+                  <th>Category</th>
+                  <th>Brand</th>
+                  <th>MRP</th>
+                  <th>Selling Price</th>
+                  <th>Live Stock</th>
+                </tr>
+              </thead>
+
+              <tbody id="priceProductsTableBody">
+                <tr>
+                  <td colspan="8" class="price-empty-message">
+                    Select filters and click Check Price
+                    to view products.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MATERIALS REPORTS PAGE -->
+    <section id="page-materials-reports" class="page">
+
+      <div class="materials-reports-page">
+
+        <div class="materials-reports-header">
+          <h2>Materials Reports</h2>
+        </div>
+
+        <div class="materials-reports-container">
+
+          <div class="materials-reports-section-header">
+            <h3>Materials Reports</h3>
+          </div>
+
+          <div class="materials-reports-content">
+
+            <p class="materials-reports-description">
+              Reports related to materials inventory and stock
+            </p>
+
+            <div class="materials-report-grid">
+
+              <div class="materials-report-card">
+                <h4>Inventory Report</h4>
+                <p>Complete inventory listing with current stock levels, categories, and suppliers.</p>
+                <strong>Data Points:</strong>
+                <p class="report-details">Material ID, Material Name, Current Stock, Category, Supplier, Unit</p>
+                <strong>Available Filters:</strong>
+                <p class="report-details">Category, Supplier</p>
+              </div>
+
+              <div class="materials-report-card">
+                <h4>Low Stock Alert Report</h4>
+                <p>Materials with stock levels below threshold or zero stock.</p>
+                <strong>Data Points:</strong>
+                <p class="report-details">Material ID, Material Name, Current Stock, Category, Supplier</p>
+                <strong>Available Filters:</strong>
+                <p class="report-details">Category, Threshold Level</p>
+              </div>
+
+              <div class="materials-report-card">
+                <h4>Material Valuation Report</h4>
+                <p>Total valuation of inventory by material (Stock × Latest Rate).</p>
+                <strong>Data Points:</strong>
+                <p class="report-details">Material ID, Material Name, Stock, Latest Rate, Total Value, Category</p>
+                <strong>Available Filters:</strong>
+                <p class="report-details">Category, Supplier</p>
+              </div>
+
+              <div class="materials-report-card">
+                <h4>Material Category Summary</h4>
+                <p>Summary of materials grouped by category.</p>
+                <strong>Data Points:</strong>
+                <p class="report-details">Category, Material Count, Total Stock, Total Value</p>
+                <strong>Available Filters:</strong>
+                <p class="report-details">Date Range</p>
+              </div>
+
+              <div class="materials-report-card">
+                <h4>Supplier-wise Material Report</h4>
+                <p>List of materials organized by supplier.</p>
+                <strong>Data Points:</strong>
+                <p class="report-details">Supplier, Material ID, Material Name, Stock, Category, Latest Rate</p>
+                <strong>Available Filters:</strong>
+                <p class="report-details">Supplier, Category</p>
+              </div>
+
+              <div class="materials-report-card">
+                <h4>Material Tax &amp; HSN Report</h4>
+                <p>Materials with tax percentages and HSN numbers.</p>
+                <strong>Data Points:</strong>
+                <p class="report-details">Material ID, Material Name, Tax %, HSN Number, Category, Supplier</p>
+                <strong>Available Filters:</strong>
+                <p class="report-details">Category, Tax Range</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- REPORTS SUBMENU -->
+    <div class="nav-submenu">
+      <div class="nav-sub-item" onclick="navigate('materials-reports')">
+        Materials Report
+      </div>
+    </div>
+
+
+    <!-- TRANSPORT MANAGEMENT PAGE -->
+    <section id="page-transport" class="page">
+
+      <div class="transport-page">
+
+        <!-- Page Header -->
+        <div class="transport-header">
+          <h2>Transports</h2>
+
+          <button class="transport-import-btn" onclick="importTransportData()">
+            Import
+          </button>
+        </div>
+
+        <!-- Table Container -->
+        <div class="transport-table-container">
+
+          <table class="transport-table">
+            <thead>
+              <tr>
+                <th>ID <span class="transport-filter">☰</span></th>
+                <th>Image</th>
+                <th>Asset Code <span class="transport-filter">☰</span></th>
+                <th>Asset Name <span class="transport-filter">☰</span></th>
+                <th>Vehicle No. <span class="transport-filter">☰</span></th>
+                <th>Working Status <span class="transport-filter">☰</span></th>
+                <th>Branch <span class="transport-filter">☰</span></th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="transportTableBody">
+
+              <tr>
+                <td>8</td>
+                <td>
+                  <div class="transport-no-image">No Image</div>
+                </td>
+                <td>AM/VEH/BD/000001</td>
+                <td>BADA DOST 13 PLUS</td>
+                <td>—</td>
+                <td>Working</td>
+                <td>A1MART-SARON</td>
+                <td>
+                  <button class="transport-action-btn" onclick="toggleTransportActionMenu(this)">⋮</button>
+                  <div class="transport-action-menu">
+                    <button onclick="viewTransport(this)">View</button>
+                    <button onclick="editTransport(this)">Edit</button>
+                    <button onclick="deleteTransport(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>9</td>
+                <td>
+                  <div class="transport-no-image">No Image</div>
+                </td>
+                <td>AM/VEH/EV/000001</td>
+                <td>YAKUZA LOADER</td>
+                <td>—</td>
+                <td>Working</td>
+                <td>A1MART-SARON</td>
+                <td>
+                  <button class="transport-action-btn" onclick="toggleTransportActionMenu(this)">⋮</button>
+                  <div class="transport-action-menu">
+                    <button onclick="viewTransport(this)">View</button>
+                    <button onclick="editTransport(this)">Edit</button>
+                    <button onclick="deleteTransport(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>10</td>
+                <td>
+                  <div class="transport-no-image">No Image</div>
+                </td>
+                <td>AM/VEH/ER/000001</td>
+                <td>EICHER</td>
+                <td>—</td>
+                <td>Working</td>
+                <td>A1MART-SARON</td>
+                <td>
+                  <button class="transport-action-btn" onclick="toggleTransportActionMenu(this)">⋮</button>
+                  <div class="transport-action-menu">
+                    <button onclick="viewTransport(this)">View</button>
+                    <button onclick="editTransport(this)">Edit</button>
+                    <button onclick="deleteTransport(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>11</td>
+                <td>
+                  <div class="transport-no-image">No Image</div>
+                </td>
+                <td>AM/VEH/ER/000002</td>
+                <td>EICHER</td>
+                <td>—</td>
+                <td>Working</td>
+                <td>A1MART-SARON</td>
+                <td>
+                  <button class="transport-action-btn" onclick="toggleTransportActionMenu(this)">⋮</button>
+                  <div class="transport-action-menu">
+                    <button onclick="viewTransport(this)">View</button>
+                    <button onclick="editTransport(this)">Edit</button>
+                    <button onclick="deleteTransport(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>12</td>
+                <td>
+                  <div class="transport-no-image">No Image</div>
+                </td>
+                <td>AM/VEH/CAR/000001</td>
+                <td>CAR TN-25-CE-6683</td>
+                <td>TN-25-CE-6683</td>
+                <td>Working</td>
+                <td>A1MART-SARON</td>
+                <td>
+                  <button class="transport-action-btn" onclick="toggleTransportActionMenu(this)">⋮</button>
+                  <div class="transport-action-menu">
+                    <button onclick="viewTransport(this)">View</button>
+                    <button onclick="editTransport(this)">Edit</button>
+                    <button onclick="deleteTransport(this)">Delete</button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+
+    <!-- ===== EMPLOYEE DASHBOARD ===== -->
+    <section class="page" id="page-employee-dashboard">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Employee Dashboard</h1>
+        </div>
+        <div class="page-filters">
+          <select class="filter-select">
+            <option>All Branches</option>
+            <option>A1MART-SARON</option>
+            <option>A1MART-DISTRIBUTION WAREHOUSE</option>
+          </select>
+        </div>
+      </div>
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-title">Employees by Religion</div>
+          <canvas id="religionChart" height="260"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Employees by Gender</div>
+          <canvas id="genderChart" height="260"></canvas>
+        </div>
+      </div>
+      <div class="data-table-wrap">
+        <div class="table-section-label">Employees</div>
+        <div class="table-toolbar">
+          <input type="text" class="table-search" placeholder="Search employees..." />
+          <button class="btn-primary"><i class="fa fa-plus"></i> Add Employee</button>
+        </div>
+        <table class="data-table" id="employeesTable">
+          <thead>
+            <tr>
+              <th>ID <i class="fa fa-sort"></i></th>
+              <th>Name <i class="fa fa-sort"></i></th>
+              <th>Branch <i class="fa fa-sort"></i></th>
+              <th>Designation <i class="fa fa-sort"></i></th>
+              <th>Gender <i class="fa fa-sort"></i></th>
+              <th>Status <i class="fa fa-sort"></i></th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="employeesBody"></tbody>
+        </table>
+        <div class="table-pagination" id="employeesPagination"></div>
+      </div>
+    </section>
+
+    <!-- ===== PAYROLL DASHBOARD ===== -->
+    <section class="page" id="page-payroll-dashboard">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Payroll Dashboard</h1>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Payroll</div>
+          <div class="stat-value">₹14,28,500</div>
+          <div class="stat-bar orange"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Employees Paid</div>
+          <div class="stat-value">148</div>
+          <div class="stat-bar orange"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Pending</div>
+          <div class="stat-value">4</div>
+          <div class="stat-bar blue"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg Salary</div>
+          <div class="stat-value">₹9,652</div>
+          <div class="stat-bar blue"></div>
+        </div>
+      </div>
+      <div class="chart-card" style="margin-top:24px">
+        <div class="chart-title">Payroll by Month (2026)</div>
+        <canvas id="payrollChart" height="240"></canvas>
+      </div>
+    </section>
+
+    <!-- ===== ATTENDANCE DASHBOARD ===== -->
+    <section class="page" id="page-attendance-dashboard">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Attendance Dashboard</h1>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Present Today</div>
+          <div class="stat-value">138</div>
+          <div class="stat-bar orange"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Absent</div>
+          <div class="stat-value">14</div>
+          <div class="stat-bar orange"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">On Leave</div>
+          <div class="stat-value">6</div>
+          <div class="stat-bar blue"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Late Arrivals</div>
+          <div class="stat-value">8</div>
+          <div class="stat-bar blue"></div>
+        </div>
+      </div>
+      <div class="chart-card" style="margin-top:24px">
+        <div class="chart-title">Weekly Attendance Trend</div>
+        <canvas id="attendanceChart" height="240"></canvas>
+      </div>
+    </section>
+
+    <!-- ===== STOCK CIRCLE DASHBOARD ===== -->
+    <section class="page" id="page-stock-circle-dashboard">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Stock Circle Dashboard</h1>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Circles</div>
+          <div class="stat-value">24</div>
+          <div class="stat-bar orange"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Active</div>
+          <div class="stat-value">18</div>
+          <div class="stat-bar orange"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Completed</div>
+          <div class="stat-value">6</div>
+          <div class="stat-bar blue"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CHECKLIST DASHBOARD ===== -->
+    <section class="page" id="page-checklist-dashboard">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Checklist Dashboard</h1>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Checklists</div>
+          <div class="stat-value">87</div>
+          <div class="stat-bar orange"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Completed</div>
+          <div class="stat-value">64</div>
+          <div class="stat-bar orange"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Pending</div>
+          <div class="stat-value">23</div>
+          <div class="stat-bar blue"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MASTER DATA ===== -->
+    <section class="page" id="page-master-data">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Master Data</h1>
+        </div>
+      </div>
+      <div class="master-data-grid">
+        <div class="master-card" onclick="navigate('master-employees')"><i
+            class="fa fa-users"></i><span>Employees</span></div>
+        <div class="master-card" onclick="navigate('master-branches')"><i
+            class="fa fa-building"></i><span>Branches</span></div>
+        <div class="master-card" onclick="navigate('master-departments')"><i
+            class="fa fa-sitemap"></i><span>Departments</span></div>
+        <div class="master-card" onclick="navigate('master-designations')"><i
+            class="fa fa-id-badge"></i><span>Designations</span></div>
+        <div class="master-card" onclick="navigate('master-vendors')"><i
+            class="fa fa-handshake"></i><span>Vendors</span></div>
+        <div class="master-card" onclick="navigate('master-categories')"><i
+            class="fa fa-tags"></i><span>Categories</span></div>
+      </div>
+    </section>
+
+    <!-- ===== TASKS ===== -->
+    <section class="page" id="page-tasks">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">All Tasks</h1>
+        </div>
+        <button class="btn-primary" onclick="openModal('addTask')"><i class="fa fa-plus"></i> Add Task</button>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table" id="tasksTable">
+          <thead>
+            <tr>
+              <th>ID <i class="fa fa-sort"></i></th>
+              <th>Title <i class="fa fa-sort"></i></th>
+              <th>Status <i class="fa fa-sort"></i></th>
+              <th>Priority <i class="fa fa-sort"></i></th>
+              <th>Assigned To <i class="fa fa-sort"></i></th>
+              <th>Created By <i class="fa fa-sort"></i></th>
+              <th>Created At <i class="fa fa-sort"></i></th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="tasksBody"></tbody>
+        </table>
+        <div class="table-pagination" id="tasksPagination"></div>
+      </div>
+    </section>
+
+    <!-- ===== MY TASKS ===== -->
+    <section class="page" id="page-my-tasks">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">My Tasks</h1>
+        </div>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Assigned To</th>
+              <th>Created By</th>
+              <th>Created At</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="8" class="no-rows">No Rows To Show</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="table-footer"><span>Page Size: 20</span><span>0 to 0 of 0 &nbsp; Page 0 of 0</span></div>
+      </div>
+    </section>
+
+    <!-- ===== PERFORMANCE ENTRY ===== -->
+    <section class="page" id="page-performance">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Performance Entry</h1>
+        </div>
+      </div>
+      <div class="load-data-card">
+        <div class="calendar-section">
+          <div class="calendar-title">Calendar View (Oct 2026)</div>
+          <div class="calendar-days" id="perfCalendar"></div>
+          <div class="calendar-legend">
+            <span class="legend-item uploaded">Uploaded</span>
+            <span class="legend-item pending">Pending</span>
+            <span class="legend-item missed">Missed</span>
+          </div>
+        </div>
+        <div class="form-section-card">
+          <div class="form-section-title">Items</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" class="form-input" value="2026-10-24" />
+            </div>
+          </div>
+          <div class="upload-zone">
+            <i class="fa fa-upload upload-icon"></i>
+            <div class="upload-text">Drag & drop files here, or click to select</div>
+            <div class="upload-hint">Only .xlsx, .xls, and .csv files are accepted</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== ADD PERFORMANCE ENTRY ===== -->
+    <section class="page" id="page-add-performance-entry">
+
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Add Performance Entry</h1>
+        </div>
+      </div>
+
+      <div class="content-card">
+
+        <h3 class="section-label">Performance Details</h3>
+
+        <form class="performance-form">
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label>Employee ID</label>
+              <input type="text" placeholder="Enter Employee ID">
+            </div>
+
+            <div class="form-group">
+              <label>Employee Name</label>
+              <input type="text" placeholder="Enter Employee Name">
+            </div>
+
+            <div class="form-group">
+              <label>Branch</label>
+              <select>
+                <option value="">Select Branch</option>
+                <option>Corporate Office</option>
+                <option>Saron</option>
+                <option>Distribution Warehouse</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Designation</label>
+              <select>
+                <option value="">Select Designation</option>
+                <option>Billing Operator</option>
+                <option>Sales Executive</option>
+                <option>Manager</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Performance Date</label>
+              <input type="date">
+            </div>
+
+            <div class="form-group">
+              <label>Performance Score</label>
+              <input type="number" placeholder="Enter Score">
+            </div>
+
+            <div class="form-group">
+              <label>Remarks</label>
+              <textarea placeholder="Enter Remarks"></textarea>
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <button type="reset" class="btn-secondary">
+              Reset
+            </button>
+
+            <button type="button" class="btn-primary">
+              Submit Performance
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </section>
+    <!-- ===== LOAD PERFORMANCE ENTRY ===== -->
+    <section class="page" id="page-load-performance-entry">
+
+      <div class="page-header">
+
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Load Performance Entry</h1>
+        </div>
+
+      </div>
+
+      <div class="content-card">
+
+        <div class="table-toolbar">
+
+          <div>
+            <h3>Performance Records</h3>
+            <p class="page-subtitle">
+              View and manage employee performance records.
+            </p>
+          </div>
+
+          <div class="table-actions">
+            <input
+              type="text"
+              class="table-search"
+              placeholder="Search employee..."
+            >
+
+            <button class="btn-primary"
+                    onclick="navigate('add-performance-entry')">
+              <i class="fa fa-plus"></i>
+              Add Performance
+            </button>
+          </div>
+
+        </div>
+
+        <div class="table-responsive">
+
+          <table class="data-table">
+
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+                <th>Branch</th>
+                <th>Designation</th>
+                <th>Performance Date</th>
+                <th>Score</th>
+                <th>Remarks</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>1</td>
+                <td>A1-001</td>
+                <td>Employee One</td>
+                <td>Corporate Office</td>
+                <td>Manager</td>
+                <td>23-10-2026</td>
+                <td>90</td>
+                <td>Good Performance</td>
+                <td>
+                  <button class="action-btn">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td>2</td>
+                <td>A1-002</td>
+                <td>Employee Two</td>
+                <td>Saron</td>
+                <td>Sales Executive</td>
+                <td>23-10-2026</td>
+                <td>85</td>
+                <td>Excellent</td>
+                <td>
+                  <button class="action-btn">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </button>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+    <!-- ===== SALES TARGET ===== -->
+    <section class="page" id="page-sales-target">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Sales Target - Employee</h1>
+        </div>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table" id="salesTargetTable">
+          <thead>
+            <tr>
+              <th>Branch <i class="fa fa-sort"></i></th>
+              <th>Department <i class="fa fa-sort"></i></th>
+              <th>Section <i class="fa fa-sort"></i></th>
+              <th>Target Month <i class="fa fa-sort"></i></th>
+              <th>Target Amount <i class="fa fa-sort"></i></th>
+              <th>Status <i class="fa fa-sort"></i></th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="salesTargetBody"></tbody>
+        </table>
+        <div class="table-pagination" id="salesTargetPagination"></div>
+      </div>
+    </section>
+
+    <!-- ===== CHECKLIST ===== -->
+    <section class="page" id="page-checklist">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Checklist Management System</h1>
+        </div>
+        <button class="btn-primary"><i class="fa fa-plus"></i> Add Checklist</button>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table" id="checklistTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Branch</th>
+              <th>Assigned To</th>
+              <th>Due Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="checklistBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== MATERIALS ===== -->
+    <section class="page" id="page-materials">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Materials Management System</h1>
+        </div>
+        <button class="btn-primary"><i class="fa fa-plus"></i> Add Material</button>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Material</th>
+              <th>Category</th>
+              <th>Quantity</th>
+              <th>Unit</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="materialsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== STOCK DETAILS ===== -->
+    <section class="page" id="page-stock-details">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Stock Details</h1>
+        </div>
+        <label class="toggle-label"><input type="checkbox" /> Show Returned</label>
+      </div>
+      <div class="tabs-bar">
+        <button class="tab-btn active" onclick="switchTab(this,'grouped-buyer')">Grouped By Buyer</button>
+        <button class="tab-btn" onclick="switchTab(this,'grouped-supplier')">Grouped By Supplier</button>
+      </div>
+      <div class="tab-content active" id="grouped-buyer">
+        <div class="stock-group-list" id="stockGroupList"></div>
+      </div>
+      <div class="tab-content" id="grouped-supplier"></div>
+    </section>
+
+    <!-- ===== PURCHASE ENTRIES ===== -->
+    <section class="page" id="page-purchase-entries">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Purchase Entries</h1>
+        </div>
+        <button class="btn-primary"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table" id="purchaseTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Invoice Number</th>
+              <th>Invoice Date</th>
+              <th>PO Number</th>
+              <th>Vendor</th>
+              <th>Items</th>
+              <th>Total Amount</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="purchaseBody"></tbody>
+        </table>
+        <div class="table-pagination" id="purchasePagination"></div>
+      </div>
+    </section>
+
+    <!-- ===== ADD CIRCLE ===== -->
+    <section class="page" id="page-add-circle">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Add Circle</h1>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="form-group">
+          <label>Select Branch</label>
+          <select class="form-input">
+            <option value="">Click here to select branch...</option>
+            <option>A1MART-SARON</option>
+            <option>A1MART-DISTRIBUTION WAREHOUSE</option>
+            <option>A1-MART CORPORATE OFFICE</option>
+          </select>
+        </div>
+        <div class="form-section-card" style="margin-top:16px">
+          <div class="form-section-title">Period</div>
+          <div class="form-group">
+            <label>Period Type</label>
+            <select class="form-input">
+              <option value="">Select Period Type</option>
+              <option>Monthly</option>
+              <option>Weekly</option>
+              <option>Quarterly</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row three-col" style="margin-top:16px">
+          <div class="form-group">
+            <label>Departments</label>
+            <select class="form-input" multiple>
+              <option>GROCERY FOOD</option>
+              <option>HOUSEHOLD NECESSARY</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select class="form-input">
+              <option value="">Select Category</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Subcategory</label>
+            <select class="form-input">
+              <option value="">Select Subcategory</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn-secondary">Reset</button>
+          <button class="btn-primary">Create</button>
+        </div>
+      </div>
+      <div class="data-table-wrap" style="margin-top:24px">
+        <div class="table-section-label">All Circles</div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Branch</th>
+              <th>Type</th>
+              <th>Period</th>
+              <th>Departments</th>
+              <th>Category</th>
+              <th>Subcategory</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="8" class="no-rows">No Records Found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== REPORTS ===== -->
+    <section class="page" id="page-reports">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Reports</h1>
+        </div>
+      </div>
+      <div class="reports-grid">
+        <div class="report-card" onclick="navigate('sales-report')"><i class="fa fa-chart-line"></i>
+          <div><b>Sales Report</b>
+            <p>View detailed sales analytics</p>
+          </div>
+        </div>
+        <div class="report-card" onclick="navigate('payroll-report')"><i class="fa fa-money-bill-wave"></i>
+          <div><b>Payroll Report</b>
+            <p>Monthly payroll summaries</p>
+          </div>
+        </div>
+        <div class="report-card"><i class="fa fa-boxes-stacked"></i>
+          <div><b>Stock Report</b>
+            <p>Inventory levels and movements</p>
+          </div>
+        </div>
+        <div class="report-card"><i class="fa fa-users"></i>
+          <div><b>Attendance Report</b>
+            <p>Employee attendance records</p>
+          </div>
+        </div>
+        <div class="report-card"><i class="fa fa-bullseye"></i>
+          <div><b>Target Achievement</b>
+            <p>Sales targets vs actuals</p>
+          </div>
+        </div>
+        <div class="report-card"><i class="fa fa-truck"></i>
+          <div><b>Transport Report</b>
+            <p>Vehicle & delivery logs</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== APPROVALS ===== -->
+    <section class="page" id="page-approvals">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Approvals</h1>
+        </div>
+      </div>
+      <div class="tabs-bar">
+        <button class="tab-btn active">Leave Approvals</button>
+        <button class="tab-btn">Expense Approvals</button>
+        <button class="tab-btn">Other Approvals</button>
+      </div>
+      <div class="data-table-wrap" style="margin-top:16px">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Employee</th>
+              <th>Type</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="approvalsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== INCENTIVE APPROVALS ===== -->
+    <section class="page" id="page-incentive-approvals">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Incentive Approvals</h1>
+        </div>
+        <button class="btn-primary"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table" id="incentiveTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Branch</th>
+              <th>Designation</th>
+              <th>Incentive Type</th>
+              <th>Total Incentive</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="incentiveBody"></tbody>
+        </table>
+        <div class="table-pagination" id="incentivePagination"></div>
+      </div>
+    </section>
+
+    <!-- ===== BILLING CHECKER INCENTIVE ===== -->
+    <section class="page" id="page-billing-checker-incentive">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Billing Checker Incentive</h1>
+        </div>
+        <button class="btn-primary"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Cluster Size</th>
+              <th>Month</th>
+              <th>Incentive Type</th>
+              <th>Value</th>
+              <th>Ranges</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>12</td>
+              <td>Large</td>
+              <td>—</td>
+              <td>Single Percentage</td>
+              <td>0.07%</td>
+              <td>—</td>
+              <td><button class="action-btn"><i class="fa fa-ellipsis-v"></i></button></td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>Medium</td>
+              <td>—</td>
+              <td>Single Percentage</td>
+              <td>0.09%</td>
+              <td>—</td>
+              <td><button class="action-btn"><i class="fa fa-ellipsis-v"></i></button></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Small</td>
+              <td>—</td>
+              <td>Single Percentage</td>
+              <td>0.10%</td>
+              <td>—</td>
+              <td><button class="action-btn"><i class="fa fa-ellipsis-v"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="table-footer"><span>Page Size: 20</span><span>1 to 3 of 3 &nbsp; Page 1 of 1</span></div>
+      </div>
+    </section>
+
+    <!-- ===== LOGS ===== -->
+    <section class="page" id="page-logs">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Logs</h1>
+        </div>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>Action</th>
+              <th>Module</th>
+              <th>Timestamp</th>
+            </tr>
+          </thead>
+          <tbody id="logsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== PAYROLL ===== -->
+    <section class="page" id="page-payroll">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Payroll Management System</h1>
+        </div>
+        <button class="btn-primary"><i class="fa fa-plus"></i> Generate Payroll</button>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Employee</th>
+              <th>Branch</th>
+              <th>Month</th>
+              <th>Basic</th>
+              <th>Allowances</th>
+              <th>Deductions</th>
+              <th>Net Pay</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="payrollBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== RECEIPT ENTRY ===== -->
+    <section class="page" id="page-receipt-entry">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Receipt Entry</h1>
+        </div>
+        <button class="btn-primary"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table" id="receiptTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Voucher Date</th>
+              <th>Branch</th>
+              <th>Total Amount</th>
+              <th>Created By</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="receiptBody"></tbody>
+        </table>
+        <div class="table-pagination" id="receiptPagination"></div>
+      </div>
+    </section>
+
+    <!-- ===== LOAD DATA ===== -->
+    <section class="page" id="page-load-data">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Load Data</h1>
+        </div>
+      </div>
+      <div class="load-data-card">
+        <div class="calendar-section">
+          <div class="calendar-title">Calendar View (Oct 2026)</div>
+          <div class="calendar-days" id="loadCalendar"></div>
+          <div class="calendar-legend">
+            <span class="legend-item uploaded">Uploaded</span>
+            <span class="legend-item pending">Pending</span>
+            <span class="legend-item missed">Missed</span>
+          </div>
+        </div>
+        <div class="form-section-card">
+          <div class="form-section-title">Items</div>
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" class="form-input" value="2026-10-24" />
+          </div>
+          <div class="upload-zone" onclick="triggerUpload()">
+            <i class="fa fa-upload upload-icon"></i>
+            <div class="upload-text">Drag & drop files here, or click to select</div>
+            <div class="upload-hint">Only .xlsx, .xls, and .csv files are accepted</div>
+            <input type="file" id="fileUpload" accept=".xlsx,.xls,.csv" style="display:none" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PURCHASE RETURN ===== -->
+    <section class="page" id="page-purchase-return">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Purchase Return</h1>
+        </div>
+        <button class="btn-primary"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Return Date</th>
+              <th>Invoice Number</th>
+              <th>Vendor</th>
+              <th>Items</th>
+              <th>Total Amount</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="returnBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== TRANSPORT ===== -->
+    <section class="page" id="page-transport">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Transport Management System</h1>
+        </div>
+        <button class="btn-primary"><i class="fa fa-plus"></i> Add Route</button>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Vehicle</th>
+              <th>Driver</th>
+              <th>Route</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="transportBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== SETTINGS ===== -->
+    <section class="page" id="page-settings">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Settings</h1>
+        </div>
+      </div>
+      <div class="settings-list">
+        <div class="settings-item">
+          <div>
+            <div class="settings-title">Two-Factor Authentication (2FA) <span class="badge-enabled">Enabled</span></div>
+            <div class="settings-desc">Add an extra layer of security to your account by requiring a code from your
+              authenticator app when logging in.</div>
+          </div>
+          <button class="btn-secondary" onclick="toggle2FA()">Disable 2FA</button>
+        </div>
+        <div class="settings-item">
+          <div>
+            <div class="settings-title">Logout</div>
+            <div class="settings-desc">Sign out of your account. You will need to log in again to access the system.
+            </div>
+          </div>
+          <button class="btn-logout" onclick="confirmLogout()"><i class="fa fa-power-off"></i> Logout</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MASTER sub-pages placeholder ===== -->
+    <section class="page" id="page-master-employees">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Employees</h1>
+        </div><button class="btn-primary"><i class="fa fa-plus"></i> Add Employee</button>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Branch</th>
+              <th>Designation</th>
+              <th>Gender</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="masterEmpBody"></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="page" id="page-master-branches">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Branches</h1>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-master-departments">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Departments</h1>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-master-designations">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Designations</h1>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-master-vendors">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Vendors</h1>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-master-categories">
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Categories</h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-bank-submission">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">A1-MART / Bank Submission</div>
+          <h1 class="page-title">Bank Submission</h1>
+          <p class="page-subtitle">Prepare and review payroll bank submission records.</p>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="empty-state"><i class="fa fa-clipboard-list"></i>
+          <h3>Bank Submission</h3>
+          <p>Prepare and review payroll bank submission records. This screen is ready for its detailed form and
+            workflow.</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-payslips">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">A1-MART / Payslips</div>
+          <h1 class="page-title">Payslips</h1>
+          <p class="page-subtitle">View and manage generated employee payslips.</p>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="empty-state"><i class="fa fa-clipboard-list"></i>
+          <h3>Payslips</h3>
+          <p>View and manage generated employee payslips. This screen is ready for its detailed form and workflow.</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-my-payslips">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">A1-MART / My Payslips</div>
+          <h1 class="page-title">My Payslips</h1>
+          <p class="page-subtitle">View personal payslip history.</p>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="empty-state"><i class="fa fa-clipboard-list"></i>
+          <h3>My Payslips</h3>
+          <p>View personal payslip history. This screen is ready for its detailed form and workflow.</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-employee-allocation">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">A1-MART / Employee Allocation</div>
+          <h1 class="page-title">Employee Allocation</h1>
+          <p class="page-subtitle">Allocate employees to payroll groups and branches.</p>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="empty-state"><i class="fa fa-clipboard-list"></i>
+          <h3>Employee Allocation</h3>
+          <p>Allocate employees to payroll groups and branches. This screen is ready for its detailed form and workflow.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-current-assets">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">A1-MART / Current Assets</div>
+          <h1 class="page-title">Current Assets</h1>
+          <p class="page-subtitle">Review current asset records.</p>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="empty-state"><i class="fa fa-clipboard-list"></i>
+          <h3>Current Assets</h3>
+          <p>Review current asset records. This screen is ready for its detailed form and workflow.</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-payment-entry">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">A1-MART / Payment Entry</div>
+          <h1 class="page-title">Payment Entry</h1>
+          <p class="page-subtitle">Create and review account payment entries.</p>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="empty-state"><i class="fa fa-clipboard-list"></i>
+          <h3>Payment Entry</h3>
+          <p>Create and review account payment entries. This screen is ready for its detailed form and workflow.</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-ledger">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">A1-MART / Ledger</div>
+          <h1 class="page-title">Ledger</h1>
+          <p class="page-subtitle">Review account ledger transactions.</p>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="empty-state"><i class="fa fa-clipboard-list"></i>
+          <h3>Ledger</h3>
+          <p>Review account ledger transactions. This screen is ready for its detailed form and workflow.</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-money-transfer">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">A1-MART / Money Transfer</div>
+          <h1 class="page-title">Money Transfer</h1>
+          <p class="page-subtitle">Record and review transfers between accounts.</p>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="empty-state"><i class="fa fa-clipboard-list"></i>
+          <h3>Money Transfer</h3>
+          <p>Record and review transfers between accounts. This screen is ready for its detailed form and workflow.</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-purchase-return-receipt">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">A1-MART / Purchase Return — Receipt Entry</div>
+          <h1 class="page-title">Purchase Return — Receipt Entry</h1>
+          <p class="page-subtitle">Record receipt entries related to purchase returns.</p>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="empty-state"><i class="fa fa-clipboard-list"></i>
+          <h3>Purchase Return — Receipt Entry</h3>
+          <p>Record receipt entries related to purchase returns. This screen is ready for its detailed form and
+            workflow.</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-distributor-issue">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">A1-MART / Distributor Issue</div>
+          <h1 class="page-title">Distributor Issue</h1>
+          <p class="page-subtitle">Record distributor issue transactions.</p>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="empty-state"><i class="fa fa-clipboard-list"></i>
+          <h3>Distributor Issue</h3>
+          <p>Record distributor issue transactions. This screen is ready for its detailed form and workflow.</p>
+        </div>
+      </div>
+    </section>
+    <!-- ===== BILLING COUNTERS ===== -->
+    <section class="page" id="page-billing-counters">
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="page-title-wrap">
+          <div class="page-title-bar"></div>
+          <h1 class="page-title">Billing Counters</h1>
+        </div>
+
+        <button class="btn-primary" onclick="openModal('importAssets')">
+          <i class="fa fa-upload"></i>
+          Import
+        </button>
+      </div>
+
+      <!-- Billing Counter Table -->
+      <div class="data-table-wrap">
+
+        <table class="data-table" id="billingCountersTable">
+
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Asset Code</th>
+              <th>Asset Name</th>
+              <th>Vehicle No.</th>
+              <th>Working Status</th>
+              <th>Branch</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody id="billingCountersBody">
+
+            <tr>
+              <td>
+                <div class="asset-image-placeholder">
+                  No Image
+                </div>
+              </td>
+
+              <td>AM/VEH/BD/000001</td>
+
+              <td>BADA DOST I3 PLUS</td>
+
+              <td>TN-25-CE-6683</td>
+
+              <td>
+                <span class="status-working">
+                  Working
+                </span>
+              </td>
+
+              <td>AIMART-SARON</td>
+
+              <td>
+                <button class="action-btn">
+                  <i class="fa fa-ellipsis-v"></i>
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <div class="asset-image-placeholder">
+                  No Image
+                </div>
+              </td>
+
+              <td>AM/VEH/EV/000001</td>
+
+              <td>YAKUZA LOADER</td>
+
+              <td>-</td>
+
+              <td>
+                <span class="status-working">
+                  Working
+                </span>
+              </td>
+
+              <td>AIMART-SARON</td>
+
+              <td>
+                <button class="action-btn">
+                  <i class="fa fa-ellipsis-v"></i>
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <div class="asset-image-placeholder">
+                  No Image
+                </div>
+              </td>
+
+              <td>AM/VEH/ER/000001</td>
+
+              <td>EICHER</td>
+
+              <td>-</td>
+
+              <td>
+                <span class="status-working">
+                  Working
+                </span>
+              </td>
+
+              <td>AIMART-SARON</td>
+
+              <td>
+                <button class="action-btn">
+                  <i class="fa fa-ellipsis-v"></i>
+                </button>
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ===================== MODAL ===================== -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Add Task</div>
+      <button class="modal-close" onclick="closeModal()"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+      <button class="btn-primary" onclick="saveModal()">Save</button>
+    </div>
+  </div>
+
+  <!-- ===================== TOAST ===================== -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ===================== SETTINGS SIDE PANEL ===================== -->
+  <div class="settings-panel" id="settingsPanel">
+    <div class="settings-panel-title">Page Settings</div>
+    <div class="settings-panel-close" onclick="closeSettingsPanel()"><i class="fa fa-xmark"></i></div>
+    <div class="settings-panel-item"><label>Theme</label><select>
+        <option>Light</option>
+        <option>Dark</option>
+      </select></div>
+    <div class="settings-panel-item"><label>Font Size</label><select>
+        <option>Default</option>
+        <option>Large</option>
+        <option>Small</option>
+      </select></div>
+  </div>
+  <button class="settings-side-btn" id="settingsSideBtn" onclick="openSettingsPanel()">Settings</button>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
